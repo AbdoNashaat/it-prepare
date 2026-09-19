@@ -828,7 +828,8 @@
   </div>
 
   <nav class="nav-scroll" id="navTabs">
-    <button class="nav-pill active" data-tab="tab-academy">📚 Zero-to-Pro Academy</button>
+    <button class="nav-pill active" data-tab="tab-networking">🌐 Networking 101</button>
+    <button class="nav-pill" data-tab="tab-academy">📚 Academy</button>
     <button class="nav-pill" data-tab="tab-pitch">🎯 Pitch & CV</button>
     <button class="nav-pill" data-tab="tab-tech">💻 Tech Core</button>
     <button class="nav-pill" data-tab="tab-culture">🏛️ College Fit</button>
@@ -842,8 +843,613 @@
 <!-- MAIN CONTENT -->
 <main id="appMain">
 
+  <!-- ================= TAB: NETWORKING 101 & MASTER TERMINOLOGY ================= -->
+  <section class="tab-pane active" id="tab-networking">
+
+    <div class="card" style="background:linear-gradient(135deg, rgba(9, 105, 218, 0.15), rgba(47, 129, 247, 0.15)); border-color:var(--border-active);">
+      <div class="card-header">
+        <span class="badge badge-primary">Zero Knowledge Required</span>
+        <span class="badge badge-success">8 Comprehensive Modules</span>
+      </div>
+      <h2 class="card-title" style="font-size:16px;">🌐 Networking 101 & Master Terminology</h2>
+      <p style="font-size:12.5px; color:var(--text-muted); margin-top:4px; line-height:1.5;">
+        Every fundamental concept, device, protocol, and acronym explained from absolute scratch. No jargon left undefined. Study this to understand the fundamental plumbing of all enterprise IT.
+      </p>
+    </div>
+
+    <input type="text" class="search-box" id="netSearch" placeholder="🔍 Search Networking 101: MAC, Switch, Router, Subnet, DORA, DNS, TCP, VLAN, OSI...">
+
+    <!-- MODULE 1: THE MENTAL MODEL -->
+    <div class="card net-card" data-keywords="network lan wan client server bandwidth latency throughput packet bits bytes">
+      <div class="card-header">
+        <span class="badge badge-primary">Module 1 of 8</span>
+        <span class="badge badge-success">The Mental Model</span>
+      </div>
+      <h2 class="card-title">1. What is a Computer Network?</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px; margin-bottom:10px;">
+        The foundational concepts of how machines link together to communicate.
+      </p>
+
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>💡</span> 1.1 The Core Definition: Network, LAN & WAN</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="analogy-box">
+            <strong>🏠 Real-World Analogy:</strong><br>
+            • <strong>LAN (Local Area Network):</strong> Your family inside your house talking to each other. It covers a small physical area (a single room, office, or building). High speed, low cost.<br>
+            • <strong>WAN (Wide Area Network):</strong> The postal system and telephone network connecting your house to relatives in other cities and countries. <em>The Internet is the world's largest WAN.</em>
+          </div>
+          • <strong>Client vs Server:</strong><br>
+          - <strong>Client:</strong> The device asking for data (your laptop, smartphone, or student VM).<br>
+          - <strong>Server:</strong> The high-power machine waiting to respond with data (a Web Server, File Server, or Domain Controller).<br>
+          • <strong>Bandwidth vs Throughput vs Latency (The Highway Analogy):</strong><br>
+          - <strong>Bandwidth:</strong> How many lanes the highway has (e.g., 100 Mbps = 6 lanes).<br>
+          - <strong>Throughput:</strong> How many cars actually pass per hour taking into account traffic.<br>
+          - <strong>Latency (Ping):</strong> How many minutes it takes a single car to drive from point A to point B (measured in milliseconds, ms).<br>
+          - <strong>Packet Loss:</strong> Potholes where cars break down and never arrive, requiring a re-send.
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🔢</span> 1.2 Bits vs Bytes (Why 100 Mbps is NOT 100 MB/s)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          This trips up 90% of beginners:<br>
+          • <strong>Bit (lowercase 'b'):</strong> A single binary digit: <code>0</code> or <code>1</code>. Speeds are measured in bits (Mbps = Mega<strong>bits</strong> per second).<br>
+          • <strong>Byte (uppercase 'B'):</strong> A group of <strong>8 bits</strong>. File sizes are measured in bytes (MB = Mega<strong>bytes</strong>).<br>
+          • <strong>The Golden Math Rule:</strong> Divide network speed by 8 to get real download speed!<br>
+          <em>Example:</em> A 100 Mbps fiber internet connection downloads files at a maximum rate of <code>100 / 8 = 12.5 MB/s</code>. A 1 GB lab image will take ~80 seconds.
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 2: HARDWARE DEVICES -->
+    <div class="card net-card" data-keywords="hardware nic mac address hub switch router modem access point ethernet collision broadcast domain">
+      <div class="card-header">
+        <span class="badge badge-purple">Module 2 of 8</span>
+        <span class="badge badge-primary">Physical Infrastructure</span>
+      </div>
+      <h2 class="card-title">2. Hardware Devices Explained (Demystified)</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px; margin-bottom:10px;">
+        Never confuse a Hub, Switch, and Router again. What each box actually does with electricity and data.
+      </p>
+
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🔌</span> 2.1 The Devices: NIC, Hub, Switch, Router & Modem</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Device</th><th>Layer</th><th>Intelligence</th><th>What It Actually Does</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>NIC</strong> (Network Card)</td>
+                  <td>Layer 1 & 2</td>
+                  <td>Hardware</td>
+                  <td>The physical chip and port (RJ-45 Ethernet or Wi-Fi radio) inside a computer that connects to the cable. Holds the MAC address.</td>
+                </tr>
+                <tr>
+                  <td><strong>Hub</strong></td>
+                  <td>Layer 1</td>
+                  <td>Dumb (Blind)</td>
+                  <td>When electrical signal enters one port, it screams it out of EVERY other port. Causes massive collisions. Obsolete in modern IT.</td>
+                </tr>
+                <tr>
+                  <td><strong>Switch</strong></td>
+                  <td>Layer 2</td>
+                  <td>Smart (MAC)</td>
+                  <td>Reads the destination MAC address. Maintains a <strong>MAC Address Table</strong> mapping MACs to physical ports. Forwards data ONLY to the intended device.</td>
+                </tr>
+                <tr>
+                  <td><strong>Router</strong></td>
+                  <td>Layer 3</td>
+                  <td>Genius (IP)</td>
+                  <td>Connects completely different networks together (e.g. LAN to WAN). Reads destination IP addresses and routes packets across the internet.</td>
+                </tr>
+                <tr>
+                  <td><strong>Modem</strong></td>
+                  <td>Layer 1</td>
+                  <td>Converter</td>
+                  <td>Modulator/Demodulator. Translates ISP physical signals (fiber optic light pulses or coaxial waves) into Ethernet digital electrical signals.</td>
+                </tr>
+                <tr>
+                  <td><strong>Access Point (AP)</strong></td>
+                  <td>Layer 2</td>
+                  <td>Bridge</td>
+                  <td>Transmits wireless radio frequencies (Wi-Fi) and bridges wireless laptops onto the wired Ethernet switch.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🏷️</span> 2.2 MAC Address: Your Hardware's Permanent DNA</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="analogy-box">
+            <strong>🧬 DNA Analogy:</strong> Your MAC address is your physical fingerprint. No matter where you travel in the world, your fingerprint never changes.
+          </div>
+          • <strong>MAC (Media Access Control):</strong> A unique 48-bit physical identifier burned into the network card at the factory.<br>
+          • <strong>Format:</strong> 12 hexadecimal characters written as pairs: <code>00:1A:2B:3C:4D:5E</code>.<br>
+          - First 6 characters (<code>00:1A:2B</code>): <strong>OUI (Organizationally Unique Identifier)</strong> — identifies the manufacturer (e.g., Intel, Cisco, Dell, Apple).<br>
+          - Last 6 characters (<code>3C:4D:5E</code>): Unique serial number assigned to that exact chip.<br>
+          • <strong>Layer 2 Communication:</strong> On a local switch, computers deliver data exclusively using MAC addresses, not IP addresses!
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>💥</span> 2.3 Collision Domains vs Broadcast Domains</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>Collision Domain:</strong> A network segment where two devices can send data at the exact same millisecond, causing electrical signals to smash together (collide) and corrupt. <em>Switches break up collision domains; each switch port is its own collision domain.</em><br>
+          • <strong>Broadcast Domain:</strong> The entire group of devices that hear a broadcast packet sent to <code>255.255.255.255</code> (e.g. DHCP Discover). <em>Switches forward broadcasts everywhere. Only a ROUTER or a VLAN breaks up broadcast domains!</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 3: IP ADDRESSING & SUBNETTING -->
+    <div class="card net-card" data-keywords="ip address ipv4 ipv6 subnet mask default gateway nat pat public private rfc 1918 loopback apipa cidr">
+      <div class="card-header">
+        <span class="badge badge-warning">Module 3 of 8</span>
+        <span class="badge badge-primary">Addressing Core</span>
+      </div>
+      <h2 class="card-title">3. IP Addressing & Subnetting from Scratch</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px; margin-bottom:10px;">
+        Why we have both MAC and IP addresses, how IPv4 is structured, and how routers know where packets go.
+      </p>
+
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>📫</span> 3.1 Why Both MAC and IP Addresses?</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="analogy-box">
+            <strong>📬 The Postal Mail Analogy:</strong><br>
+            • <strong>MAC Address:</strong> Your legal name or Social Security Number. It identifies <em>WHO</em> you are permanently.<br>
+            • <strong>IP Address:</strong> Your temporary mailing address (Street, City, Postal Code). It tells the post office <em>WHERE</em> you currently reside.<br>
+            • If you take your laptop from home to an airport to a Mississauga hotel: <strong>your MAC address stays identical, but your IP address changes at every location!</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🧩</span> 3.2 Anatomy of an IPv4 Address & Binary Basics</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • An IPv4 address is <strong>32 bits long</strong>, separated by dots into 4 segments called <strong>octets</strong> (8 bits each):<br>
+          <code>192 . 168 . 1 . 100</code><br>
+          • Each octet can range from <code>0</code> to <code>255</code> (because 8 binary bits can represent $2^8 = 256$ values: $0$ to $255$).<br>
+          • <strong>Binary Value of 1 Octet:</strong><br>
+          <code>128 | 64 | 32 | 16 | 8 | 4 | 2 | 1</code><br>
+          - To make <code>192</code>: $128 + 64 = 192$ (Binary: <code>11000000</code>).<br>
+          - To make <code>255</code>: All bits are 1s ($128+64+32+16+8+4+2+1 = 255$, Binary: <code>11111111</code>).
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🏠</span> 3.3 Public vs Private IPs & NAT (Network Address Translation)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>The Problem:</strong> IPv4 only has 4.3 billion addresses. The world ran out of them years ago!<br>
+          • <strong>The Solution: Private IP Ranges (RFC 1918):</strong><br>
+          Free to use inside private homes, companies, and colleges. Routers on the public internet immediately drop them.<br>
+          - <code>10.0.0.0 – 10.255.255.255</code> (Class A: Huge corporate networks)<br>
+          - <code>172.16.0.0 – 172.31.255.255</code> (Class B: Mid-sized networks)<br>
+          - <code>192.168.0.0 – 192.168.255.255</code> (Class C: Home routers and test labs)<br><br>
+          • <strong>NAT (Network Address Translation):</strong><br>
+          Your home router receives <strong>1 single Public IP</strong> from your ISP. When your phone, laptop, and TV (all with private 192.168.1.X IPs) browse the web, the router rewrites the source address to its single Public IP and tracks outbound traffic using port numbers (PAT). Websites only see your router's public IP!
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>✂️</span> 3.4 Subnet Masks Demystified (The Street vs House)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          Every IP address has two parts:<br>
+          1. <strong>Network ID:</strong> Which street you live on.<br>
+          2. <strong>Host ID:</strong> Which house number on that street.<br><br>
+          <strong>The Subnet Mask tells the computer where the street ends and house begins:</strong><br>
+          If your IP is <code>192.168.1.50</code> and Subnet Mask is <code>255.255.255.0</code> (or <code>/24</code>):<br>
+          • <code>255.255.255</code> means the first 3 octets (<code>192.168.1</code>) are the <strong>Network Street</strong>.<br>
+          • <code>.0</code> means the last octet (<code>.50</code>) is your specific <strong>Host House Number</strong>.<br>
+          • Any computer with an IP starting with <code>192.168.1.X</code> is on your local street. You talk directly via ARP.<br>
+          • If you want to talk to <code>8.8.8.8</code>, your computer calculates that <code>8.8.8.8</code> is on a different street, so it sends the packet to the <strong>Default Gateway (the router)</strong>.
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🌟</span> 3.5 Special IP Addresses (Loopback & IPv6)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>Loopback (127.0.0.1 / localhost):</strong> <em>"There's no place like 127.0.0.1."</em> When you ping 127.0.0.1, packets never leave your machine. It tests if your operating system's internal networking stack (TCP/IP) is alive and healthy.<br>
+          • <strong>IPv6:</strong> The successor to IPv4. 128 bits long, written in hexadecimal: <code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code>. It provides 340 undecillion addresses—enough for every grain of sand on earth to have millions of IPs! NAT is unnecessary in pure IPv6.
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 4: PROTOCOLS & PORTS -->
+    <div class="card net-card" data-keywords="protocol arp dhcp dora dns icmp ping traceroute tcp udp handshake syn ack port">
+      <div class="card-header">
+        <span class="badge badge-success">Module 4 of 8</span>
+        <span class="badge badge-primary">Protocols & Ports</span>
+      </div>
+      <h2 class="card-title">4. Network Protocols: The Grammar of the Internet</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px; margin-bottom:10px;">
+        Protocols are the agreed-upon rules of communication. How machines ask questions and receive answers.
+      </p>
+
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🤝</span> 4.1 TCP vs UDP: Certified Mail vs Live Radio</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Feature</th><th>TCP (Transmission Control Protocol)</th><th>UDP (User Datagram Protocol)</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Connection</strong></td><td>Connection-Oriented (Requires Handshake)</td><td>Connectionless (Fire & Forget)</td></tr>
+                <tr><td><strong>Reliability</strong></td><td>100% Guaranteed. Resends lost packets.</td><td>No guarantee. Lost packets are discarded.</td></tr>
+                <tr><td><strong>Speed</strong></td><td>Slower (Heavy headers & acknowledgments)</td><td>Lightning fast (Minimal header overhead)</td></tr>
+                <tr><td><strong>Analogy</strong></td><td>Registered Certified Mail with signature</td><td>Broadcasting shouting over a radio</td></tr>
+                <tr><td><strong>Used For</strong></td><td>Web (HTTP/HTTPS), File Downloads, Email, SSH</td><td>DNS queries, Voice (VoIP), Video streaming, Gaming</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <strong>The TCP 3-Way Handshake:</strong><br>
+          1. <strong>SYN (Synchronize):</strong> Client sends: <em>"Hello! Can we establish a session? My sequence number is 100."</em><br>
+          2. <strong>SYN-ACK:</strong> Server responds: <em>"Hello! Yes, I acknowledge 100. My sequence number is 300."</em><br>
+          3. <strong>ACK (Acknowledge):</strong> Client replies: <em>"Received! Connection established. Sending data now."</em>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🔍</span> 4.2 ARP: The Address Resolution Protocol</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>The Problem:</strong> Computer A wants to send data to IP <code>192.168.1.20</code> on the local switch, but the switch only understands physical MAC addresses.<br>
+          • <strong>The ARP Request:</strong> Computer A broadcasts to every device: <em>"Who has IP 192.168.1.20? Tell 192.168.1.10!"</em><br>
+          • <strong>The ARP Reply:</strong> Computer B replies: <em>"I have that IP! My MAC address is 00:1A:2B:3C:4D:5E."</em><br>
+          • <strong>ARP Cache:</strong> Computer A saves this mapping in memory so it doesn't need to ask again. View your table with <code>arp -a</code>.
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🚪</span> 4.3 Port Numbers: The Apartment Numbers of IT</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          A single server can run a web server, email server, and remote desktop all at once on the same IP. <strong>Port numbers differentiate which software receives the data.</strong>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Port</th><th>Protocol</th><th>Service Name</th><th>Plain English Explanation</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>20 / 21</strong></td><td>TCP</td><td>FTP</td><td>File Transfer Protocol for moving files between systems.</td></tr>
+                <tr><td><strong>22</strong></td><td>TCP</td><td>SSH / SFTP</td><td>Secure encrypted command line terminal into Linux or switches.</td></tr>
+                <tr><td><strong>23</strong></td><td>TCP</td><td>Telnet</td><td>Ancient unencrypted terminal. Obsolete because passwords sent in plain text!</td></tr>
+                <tr><td><strong>25</strong></td><td>TCP</td><td>SMTP</td><td>Simple Mail Transfer Protocol for sending email across servers.</td></tr>
+                <tr><td><strong>53</strong></td><td>UDP / TCP</td><td>DNS</td><td>Translates domain names (google.com) to IP addresses.</td></tr>
+                <tr><td><strong>67 / 68</strong></td><td>UDP</td><td>DHCP</td><td>Server (67) and Client (68) for dynamic IP address leasing.</td></tr>
+                <tr><td><strong>80</strong></td><td>TCP</td><td>HTTP</td><td>Standard unencrypted website traffic.</td></tr>
+                <tr><td><strong>88</strong></td><td>TCP / UDP</td><td>Kerberos</td><td>Active Directory user logon tickets & authentication.</td></tr>
+                <tr><td><strong>110</strong></td><td>TCP</td><td>POP3</td><td>Pulls emails from mail server down to your local client.</td></tr>
+                <tr><td><strong>123</strong></td><td>UDP</td><td>NTP</td><td>Network Time Protocol. Synchronizes computer clocks (vital for AD).</td></tr>
+                <tr><td><strong>143</strong></td><td>TCP</td><td>IMAP</td><td>Modern email sync keeping emails stored centrally on the server.</td></tr>
+                <tr><td><strong>389</strong></td><td>TCP / UDP</td><td>LDAP</td><td>Directory queries to search for users/groups in Active Directory.</td></tr>
+                <tr><td><strong>443</strong></td><td>TCP</td><td>HTTPS</td><td>Encrypted secure web traffic using SSL/TLS encryption.</td></tr>
+                <tr><td><strong>445</strong></td><td>TCP</td><td>SMB</td><td>Server Message Block for Windows shared folders and printers.</td></tr>
+                <tr><td><strong>3389</strong></td><td>TCP / UDP</td><td>RDP</td><td>Remote Desktop Protocol to control Windows graphical screens.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 5: THE OSI 7-LAYER MODEL -->
+    <div class="card net-card" data-keywords="osi 7 layer tcp ip model encapsulation decapsulation physical data link network transport session presentation application">
+      <div class="card-header">
+        <span class="badge badge-primary">Module 5 of 8</span>
+        <span class="badge badge-success">Architecture Standards</span>
+      </div>
+      <h2 class="card-title">5. The 7-Layer OSI Model (Decoded)</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px; margin-bottom:10px;">
+        Why networks are broken into 7 layers and how to use it to troubleshoot anything.
+      </p>
+
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🪜</span> 5.1 The 7 Layers Explained with Real-World Analogies</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>#</th><th>Layer Name</th><th>PDU</th><th>What It Does</th><th>Everyday Analogy</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>7</strong></td>
+                  <td><strong>Application</strong></td>
+                  <td>Data</td>
+                  <td>User interfaces & protocols (HTTP, DNS, SSH, RDP).</td>
+                  <td>Writing a formal letter.</td>
+                </tr>
+                <tr>
+                  <td><strong>6</strong></td>
+                  <td><strong>Presentation</strong></td>
+                  <td>Data</td>
+                  <td>Encryption (SSL/TLS), compression, and file formats (JPEG, ASCII).</td>
+                  <td>Translating the letter into French or secret code.</td>
+                </tr>
+                <tr>
+                  <td><strong>5</strong></td>
+                  <td><strong>Session</strong></td>
+                  <td>Data</td>
+                  <td>Starts, manages, and terminates connections between applications.</td>
+                  <td>Saying "Hello", holding the phone call, and saying "Goodbye".</td>
+                </tr>
+                <tr>
+                  <td><strong>4</strong></td>
+                  <td><strong>Transport</strong></td>
+                  <td>Segment</td>
+                  <td>TCP reliability, UDP speed, port numbers, flow control.</td>
+                  <td>Deciding to send via Registered Certified Mail vs Postcard.</td>
+                </tr>
+                <tr>
+                  <td><strong>3</strong></td>
+                  <td><strong>Network</strong></td>
+                  <td>Packet</td>
+                  <td>Logical addressing (IP addresses) and routing across routers.</td>
+                  <td>Writing the destination postal address and city on the envelope.</td>
+                </tr>
+                <tr>
+                  <td><strong>2</strong></td>
+                  <td><strong>Data Link</strong></td>
+                  <td>Frame</td>
+                  <td>Physical addressing (MAC addresses) and switching on local wire.</td>
+                  <td>Loading the mail van and driving to the neighborhood depot.</td>
+                </tr>
+                <tr>
+                  <td><strong>1</strong></td>
+                  <td><strong>Physical</strong></td>
+                  <td>Bits</td>
+                  <td>Copper cables, fiber glass, radio waves, RJ-45 connectors, pulses of light/voltage.</td>
+                  <td>The physical asphalt road the truck drives upon.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <strong>Easy Mnemonics to Memorize:</strong><br>
+          • <em>From Layer 7 down to Layer 1:</em> <strong>A</strong>ll <strong>P</strong>eople <strong>S</strong>eem <strong>T</strong>o <strong>N</strong>eed <strong>D</strong>ata <strong>P</strong>rocessing.<br>
+          • <em>From Layer 1 up to Layer 7:</em> <strong>P</strong>lease <strong>D</strong>o <strong>N</strong>ot <strong>T</strong>hrow <strong>S</strong>ausage <strong>P</strong>izza <strong>A</strong>way.
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>📦</span> 5.2 Encapsulation & Decapsulation (Russian Dolls)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>Encapsulation (Sending):</strong> When your browser sends data, it travels DOWN the stack (7 to 1). Each layer wraps the data with its own header: Layer 4 adds TCP Port ➔ Layer 3 adds IP Address ➔ Layer 2 adds MAC Address ➔ Layer 1 converts it into electrical 1s and 0s.<br>
+          • <strong>Decapsulation (Receiving):</strong> The receiving server travels UP the stack (1 to 7). It strips off the MAC header, verifies the IP header, opens the TCP port, and delivers pure data to the application!
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 6: ENTERPRISE VLANS & ROUTING -->
+    <div class="card net-card" data-keywords="vlan trunk access port 802.1q inter-vlan routing router on a stick firewall vpn">
+      <div class="card-header">
+        <span class="badge badge-purple">Module 6 of 8</span>
+        <span class="badge badge-primary">Enterprise Switching</span>
+      </div>
+      <h2 class="card-title">6. VLANs, Trunks & Enterprise Firewalls</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px; margin-bottom:10px;">
+        How schools and enterprises segment their networks so students can't access payroll servers.
+      </p>
+
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🏢</span> 6.1 VLANs (Virtual Local Area Networks)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="analogy-box">
+            <strong>🏢 Office Partition Analogy:</strong> Instead of buying 3 separate physical switches for Students, Faculty, and Servers, you buy ONE big 48-port switch and build virtual soundproof walls inside it.
+          </div>
+          • <strong>Why use VLANs?</strong> Security, containment of broadcast storms, and logical department division.<br>
+          • <strong>Rule:</strong> Devices on VLAN 10 (Students) CANNOT talk to devices on VLAN 20 (Staff) at Layer 2, even if plugged into ports right next to each other on the same physical switch!<br>
+          • <strong>Inter-VLAN Routing:</strong> To send traffic between VLANs, the packet must leave the switch and be forwarded by a <strong>Layer 3 Router</strong> or <strong>Layer 3 Switch</strong>.
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🛣️</span> 6.2 Access Ports vs Trunk Ports (802.1Q)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>Access Port:</strong> Configured for a single VLAN. Connects to standard user devices (PCs, printers). Traffic flowing out to the PC is untagged standard Ethernet.<br>
+          • <strong>Trunk Port:</strong> Connects switch-to-switch or switch-to-router. Carries traffic for <strong>ALL VLANs simultaneously</strong>. It injects an <strong>IEEE 802.1Q 4-byte tag</strong> into the Ethernet frame header indicating: <em>"This packet belongs to VLAN 10"</em> or <em>"This packet belongs to VLAN 20"</em>.
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🛡️</span> 6.3 Firewalls & VPNs (Virtual Private Networks)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>Stateful Firewall:</strong> Monitors active connections. If you send an outbound request to Google, the firewall automatically remembers and permits Google's reply back in. Unsolicited inbound attacks from hackers are immediately blocked.<br>
+          • <strong>VPN (Virtual Private Network):</strong> Creates an encrypted, secure tunnel through the public internet. A remote student at home connects to the college VPN; their computer receives an internal college IP address, allowing them to access lab servers as if physically sitting in the Mississauga building.
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 7: 50+ MASTER GLOSSARY -->
+    <div class="card net-card" data-keywords="glossary dictionary terms vocabulary definitions a to z">
+      <div class="card-header">
+        <span class="badge badge-success">Module 7 of 8</span>
+        <span class="badge badge-primary">A-Z Master Dictionary</span>
+      </div>
+      <h2 class="card-title">7. The Master IT & Networking Glossary (50+ Terms)</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px; margin-bottom:10px;">
+        Instant, plain-English definitions for every acronym and term in enterprise IT.
+      </p>
+
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>📖</span> A to D Terms</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>APIPA (Automatic Private IP Addressing):</strong> Self-assigned <code>169.254.x.x</code> address when DHCP fails.<br>
+          • <strong>ARP (Address Resolution Protocol):</strong> Translates an IP address into a physical MAC address on a local switch.<br>
+          • <strong>Bandwidth:</strong> The theoretical maximum data carrying capacity of a link (e.g. 1 Gbps).<br>
+          • <strong>Broadcast:</strong> One-to-All communication sent to address <code>255.255.255.255</code>.<br>
+          • <strong>CIDR (Classless Inter-Domain Routing):</strong> Slash notation for subnet masks (e.g., <code>/24</code> means 24 ones = <code>255.255.255.0</code>).<br>
+          • <strong>Collision Domain:</strong> Area of a network where packets can collide (eliminated by switches).<br>
+          • <strong>Default Gateway:</strong> The router IP that forwards traffic destined for outside the local subnet.<br>
+          • <strong>DHCP (Dynamic Host Configuration Protocol):</strong> Automatically assigns IPs, masks, and DNS servers.<br>
+          • <strong>DNS (Domain Name System):</strong> Translates human hostnames into numerical IP addresses.<br>
+          • <strong>DORA:</strong> The 4 steps of DHCP: Discover, Offer, Request, Acknowledge.
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>📖</span> E to N Terms</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>Ethernet:</strong> The standard wired networking protocol (IEEE 802.3).<br>
+          • <strong>Firewall:</strong> Security system filtering network traffic based on IP, port, and state.<br>
+          • <strong>FQDN (Fully Qualified Domain Name):</strong> Complete host and domain address (e.g. <code>server1.sales.college.local</code>).<br>
+          • <strong>Gateway:</strong> The entrance/exit point of a network subnet.<br>
+          • <strong>Half-Duplex vs Full-Duplex:</strong> Half = Walkie-talkie (one speaks at a time); Full = Telephone (both speak simultaneously).<br>
+          • <strong>ICMP (Internet Control Message Protocol):</strong> Network health diagnostic protocol used by <code>ping</code>.<br>
+          • <strong>IPv4:</strong> 32-bit dotted-decimal numerical address format (e.g., <code>192.168.1.1</code>).<br>
+          • <strong>IPv6:</strong> 128-bit hexadecimal address format replacing exhausted IPv4.<br>
+          • <strong>Latency:</strong> Time taken for a packet to travel round-trip (measured in ms).<br>
+          • <strong>MAC Address:</strong> 48-bit unique factory-burned hardware identifier.<br>
+          • <strong>MTU (Maximum Transmission Unit):</strong> Largest packet size permitted on a network (usually 1500 bytes).<br>
+          • <strong>NAT (Network Address Translation):</strong> Rewrites private IP addresses to a single public IP.
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>📖</span> O to Z Terms</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>OSI Model:</strong> 7-layer theoretical conceptual model for computer communication.<br>
+          • <strong>Packet:</strong> Layer 3 unit of data containing source/destination IPs.<br>
+          • <strong>Packet Loss:</strong> Percentage of packets dropped in transit due to congestion or bad cabling.<br>
+          • <strong>Port Number:</strong> Logical identifier directing traffic to a specific program (e.g. Port 80 = Web).<br>
+          • <strong>Router:</strong> Layer 3 hardware device directing traffic between different network subnets.<br>
+          • <strong>Static IP:</strong> Manually configured, permanent IP address (used for servers & printers).<br>
+          • <strong>Subnet Mask:</strong> Mathematical filter determining which part of an IP is Network and which is Host.<br>
+          • <strong>Switch:</strong> Layer 2 device forwarding packets to specific physical ports based on MAC table.<br>
+          • <strong>TCP:</strong> Reliable, connection-oriented transport protocol with 3-way handshake.<br>
+          • <strong>Throughput:</strong> Actual rate of successful data delivery over a connection.<br>
+          • <strong>Trunk:</strong> Switch connection carrying traffic for multiple tagged VLANs.<br>
+          • <strong>UDP:</strong> Fast, connectionless transport protocol without delivery guarantees.<br>
+          • <strong>VLAN:</strong> Virtual Local Area Network partitioning a physical switch logically.<br>
+          • <strong>VPN:</strong> Encrypted private network tunnel across the public internet.
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 8: CLI TOOLKIT -->
+    <div class="card net-card" data-keywords="cli commands ipconfig ping tracert traceroute nslookup netstat arp powershell">
+      <div class="card-header">
+        <span class="badge badge-warning">Module 8 of 8</span>
+        <span class="badge badge-success">Hands-On Diagnostic Toolkit</span>
+      </div>
+      <h2 class="card-title">8. Essential Diagnostic Commands</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px; margin-bottom:10px;">
+        The exact commands every technician runs when troubleshooting network failures.
+      </p>
+
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>💻</span> Command Syntax & Output Interpretation</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="code-block"># 1. Inspect IP, Subnet, Gateway & DNS servers
+ipconfig /all
+
+# 2. Flush corrupted local DNS resolver cache
+ipconfig /flushdns
+
+# 3. Release and request a fresh DHCP address lease
+ipconfig /release
+ipconfig /renew
+
+# 4. Test connectivity & latency to an IP
+ping 192.168.1.1
+ping -t 8.8.8.8         # Continuous ping (Ctrl+C to stop)
+
+# 5. Trace the route hop-by-hop to locate where connection drops
+tracert 8.8.8.8          # On Windows
+traceroute 8.8.8.8       # On Linux / macOS
+
+# 6. Test DNS name resolution directly
+nslookup google.com
+nslookup corp.local 192.168.1.10 # Query a specific DNS server
+
+# 7. View all active listening TCP/UDP ports and Process IDs (PIDs)
+netstat -ano
+
+# 8. View MAC Address Resolution Table
+arp -a
+
+# 9. Test if a specific TCP port is open (PowerShell)
+Test-NetConnection -ComputerName 192.168.1.10 -Port 3389</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+
   <!-- ================= TAB 0: ZERO-TO-PRO ACADEMY ================= -->
-  <section class="tab-pane active" id="tab-academy">
+  <section class="tab-pane" id="tab-academy">
 
     <div class="card" style="background:linear-gradient(135deg, rgba(47, 129, 247, 0.12), rgba(163, 113, 247, 0.12)); border-color:var(--border-active);">
       <div class="card-header">
@@ -2208,7 +2814,11 @@ ping [destination_ip]        # Layer 3 reachability test</div>
 
 <!-- BOTTOM NAVIGATION BAR (MOBILE OPTIMIZED) -->
 <nav class="bottom-nav">
-  <button class="bnav-item active" data-tab="tab-academy">
+  <button class="bnav-item active" data-tab="tab-networking">
+    <span class="bnav-icon">🌐</span>
+    <span>Net 101</span>
+  </button>
+  <button class="bnav-item" data-tab="tab-academy">
     <span class="bnav-icon">📚</span>
     <span>Academy</span>
   </button>
@@ -2223,10 +2833,6 @@ ping [destination_ip]        # Layer 3 reachability test</div>
   <button class="bnav-item" data-tab="tab-flash">
     <span class="bnav-icon">⚡</span>
     <span>Cards</span>
-  </button>
-  <button class="bnav-item" data-tab="tab-scenarios">
-    <span class="bnav-icon">🛠️</span>
-    <span>Quiz</span>
   </button>
   <button class="bnav-item" data-tab="tab-mock">
     <span class="bnav-icon">🎙️</span>
@@ -2996,7 +3602,7 @@ function initPortFinder() {
   });
 }
 
-// Search Filter in Tech Tab & Academy Tab
+// Search Filter in Tech Tab, Academy Tab & Networking 101 Tab
 function initSearch() {
   const techInput = document.getElementById('techSearch');
   if (techInput) {
@@ -3016,6 +3622,19 @@ function initSearch() {
     academyInput.addEventListener('input', (e) => {
       const query = e.target.value.toLowerCase().trim();
       const cards = document.querySelectorAll('#tab-academy .academy-card');
+
+      cards.forEach(card => {
+        const keywords = (card.getAttribute('data-keywords') || '') + ' ' + card.innerText.toLowerCase();
+        card.style.display = keywords.includes(query) ? 'block' : 'none';
+      });
+    });
+  }
+
+  const netInput = document.getElementById('netSearch');
+  if (netInput) {
+    netInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      const cards = document.querySelectorAll('#tab-networking .net-card');
 
       cards.forEach(card => {
         const keywords = (card.getAttribute('data-keywords') || '') + ' ' + card.innerText.toLowerCase();
