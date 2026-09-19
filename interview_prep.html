@@ -1,0 +1,3137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0d1117">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>IT Lab Tester & Support Master Academy | Abdelghafaar Nashaat</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-page: #0d1117;
+      --bg-surface: #161b22;
+      --bg-surface-elevated: #21262d;
+      --bg-surface-hover: #30363d;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --text-faint: #6e7681;
+      --border-subtle: #30363d;
+      --border-active: #58a6ff;
+      --accent: #2f81f7;
+      --accent-glow: rgba(47, 129, 247, 0.15);
+      --accent-secondary: #238636;
+      --accent-warning: #d29922;
+      --accent-danger: #f85149;
+      --accent-purple: #a371f7;
+      --tag-bg: rgba(56, 139, 253, 0.15);
+      --tag-text: #58a6ff;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+      --shadow: 0 4px 12px rgba(0,0,0,0.3);
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    :root[data-theme="light"] {
+      --bg-page: #f6f8fa;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #f0f3f6;
+      --bg-surface-hover: #e1e4e8;
+      --text-main: #1f2328;
+      --text-muted: #59636e;
+      --text-faint: #8c959f;
+      --border-subtle: #d0d7de;
+      --border-active: #0969da;
+      --accent: #0969da;
+      --accent-glow: rgba(9, 105, 218, 0.12);
+      --accent-secondary: #1a7f37;
+      --accent-warning: #9a6700;
+      --accent-danger: #cf222e;
+      --accent-purple: #8250df;
+      --tag-bg: #ddf4ff;
+      --tag-text: #0969da;
+      --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding-inline: 16px;
+      padding-block: 0 calc(85px + var(--safe-bottom));
+      max-width: 580px;
+      margin: 0 auto;
+      font-size: 14px;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* Top Sticky Header */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-page);
+      padding-top: calc(10px + var(--safe-top));
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
+
+    .brand-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .icon-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .icon-btn:active {
+      transform: scale(0.92);
+      background: var(--bg-surface-hover);
+    }
+
+    /* Readiness Progress Bar */
+    .study-progress {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      padding: 7px 12px;
+      border-radius: var(--radius-md);
+      font-size: 12px;
+    }
+
+    .progress-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .progress-label {
+      color: var(--text-muted);
+      font-size: 10.5px;
+      font-weight: 500;
+    }
+
+    .progress-value {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 12px;
+    }
+
+    .progress-bar-wrap {
+      width: 110px;
+      height: 6px;
+      background: var(--bg-surface-elevated);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      width: 0%;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Top Nav Pills (Scrollable) */
+    .nav-scroll {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-pill {
+      white-space: nowrap;
+      padding: 5px 11px;
+      border-radius: var(--radius-full);
+      font-size: 11.5px;
+      font-weight: 600;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav-pill.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    /* Tab Panes */
+    .tab-pane {
+      display: none;
+      padding-top: 14px;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text-main);
+    }
+
+    .badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .badge-primary { background: var(--tag-bg); color: var(--tag-text); }
+    .badge-success { background: rgba(35, 134, 54, 0.15); color: #3fb950; }
+    .badge-warning { background: rgba(210, 153, 34, 0.15); color: #d29922; }
+    .badge-purple { background: rgba(163, 113, 247, 0.15); color: #bc8cff; }
+    .badge-danger { background: rgba(248, 81, 73, 0.15); color: #f85149; }
+
+    /* Accordions */
+    .accordion {
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      border-radius: var(--radius-md);
+      margin-bottom: 8px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .accordion.open {
+      border-color: var(--accent);
+    }
+
+    .accordion-header {
+      padding: 11px 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      background: var(--bg-surface);
+      user-select: none;
+      font-weight: 600;
+      font-size: 13px;
+      gap: 8px;
+    }
+
+    .accordion-header:active {
+      background: var(--bg-surface-elevated);
+    }
+
+    .accordion-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      line-height: 1.35;
+    }
+
+    .accordion-icon {
+      transition: transform 0.2s ease;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .accordion.open .accordion-icon {
+      transform: rotate(180deg);
+      color: var(--accent);
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 12px 14px;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-surface-elevated);
+      font-size: 12.8px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .accordion.open .accordion-content {
+      display: block;
+    }
+
+    .accordion-content strong {
+      color: var(--text-main);
+    }
+
+    /* Callout Boxes */
+    .callout {
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      font-size: 12.5px;
+      margin-block: 8px;
+      border-left: 3px solid;
+      line-height: 1.55;
+    }
+    .callout-info {
+      background: var(--accent-glow);
+      border-color: var(--accent);
+      color: var(--text-main);
+    }
+    .callout-success {
+      background: rgba(35, 134, 54, 0.1);
+      border-color: var(--accent-secondary);
+      color: var(--text-main);
+    }
+    .callout-warning {
+      background: rgba(210, 153, 34, 0.1);
+      border-color: var(--accent-warning);
+      color: var(--text-main);
+    }
+    .callout-purple {
+      background: rgba(163, 113, 247, 0.1);
+      border-color: var(--accent-purple);
+      color: var(--text-main);
+    }
+
+    /* Analogy Box (ELI5) */
+    .analogy-box {
+      background: rgba(163, 113, 247, 0.08);
+      border: 1px dashed var(--accent-purple);
+      border-radius: var(--radius-md);
+      padding: 9px 12px;
+      margin-block: 7px;
+      font-size: 12.5px;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    /* Sysadmin Phrasing Box */
+    .sysadmin-phrasing {
+      background: rgba(35, 134, 54, 0.08);
+      border: 1px solid var(--accent-secondary);
+      border-radius: var(--radius-md);
+      padding: 9px 12px;
+      margin-block: 7px;
+      font-size: 12.3px;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    /* 90-Second Speech Timer Box */
+    .timer-card {
+      background: linear-gradient(135deg, var(--bg-surface), var(--bg-surface-elevated));
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+    }
+
+    .timer-display {
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    .timer-controls {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Flashcards UI */
+    .flash-filters {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
+      margin-bottom: 10px;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+    .flash-filters::-webkit-scrollbar { display: none; }
+
+    .flash-chip {
+      padding: 3px 9px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .flash-chip.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .flashcard-box {
+      perspective: 1000px;
+      min-height: 250px;
+      margin-bottom: 10px;
+    }
+
+    .flashcard-inner {
+      position: relative;
+      width: 100%;
+      min-height: 250px;
+      text-align: left;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .flashcard-inner.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard-front, .flashcard-back {
+      position: absolute;
+      inset: 0;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow);
+    }
+
+    .flashcard-front {
+      background: linear-gradient(145deg, var(--bg-surface), var(--bg-surface-elevated));
+    }
+
+    .flashcard-back {
+      background: linear-gradient(145deg, var(--bg-surface-elevated), var(--bg-surface));
+      border-color: var(--accent);
+      transform: rotateY(180deg);
+      overflow-y: auto;
+    }
+
+    .card-hint {
+      font-size: 11px;
+      color: var(--text-faint);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+      border-top: 1px dashed var(--border-subtle);
+    }
+
+    .flash-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 8px 14px;
+      border-radius: var(--radius-md);
+      font-size: 12.5px;
+      font-weight: 600;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--text-main);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.15s;
+      user-select: none;
+    }
+
+    .btn:active {
+      transform: scale(0.96);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .btn-success {
+      background: var(--accent-secondary);
+      border-color: var(--accent-secondary);
+      color: #fff;
+    }
+
+    .btn-warning {
+      background: var(--accent-warning);
+      border-color: var(--accent-warning);
+      color: #fff;
+    }
+
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 11.5px;
+    }
+
+    /* Quiz & Simulator */
+    .quiz-option {
+      padding: 10px 12px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface-elevated);
+      border-radius: var(--radius-md);
+      margin-bottom: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.4;
+    }
+
+    .quiz-option:hover {
+      background: var(--bg-surface-hover);
+    }
+
+    .quiz-option.correct {
+      border-color: var(--accent-secondary);
+      background: rgba(35, 134, 54, 0.15);
+      color: #3fb950;
+      font-weight: 600;
+    }
+
+    .quiz-option.incorrect {
+      border-color: var(--accent-danger);
+      background: rgba(248, 81, 73, 0.15);
+      color: var(--accent-danger);
+    }
+
+    .quiz-explanation {
+      display: none;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      font-size: 12.5px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      margin-top: 10px;
+      line-height: 1.55;
+    }
+
+    /* Code Snippets */
+    .code-block {
+      font-family: var(--font-mono);
+      background: var(--bg-page);
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      font-size: 12px;
+      color: var(--tag-text);
+      border: 1px solid var(--border-subtle);
+      overflow-x: auto;
+      margin-block: 6px;
+      line-height: 1.45;
+    }
+
+    .key-point {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    .key-point-icon {
+      color: var(--accent);
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* Fixed Bottom Navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-around;
+      padding-top: 7px;
+      padding-bottom: calc(7px + var(--safe-bottom));
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    .bnav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 9px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 3px 4px;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s;
+      min-width: 44px;
+    }
+
+    .bnav-item.active {
+      color: var(--accent);
+    }
+
+    .bnav-icon {
+      font-size: 16px;
+    }
+
+    /* Search Box */
+    .search-box {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--text-main);
+      font-size: 13px;
+      font-family: var(--font-sans);
+      outline: none;
+      margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+
+    .search-box:focus {
+      border-color: var(--accent);
+    }
+
+    /* Checklist */
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 7px 9px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: background 0.15s;
+      user-select: none;
+      font-size: 13px;
+    }
+
+    .checklist-item:hover {
+      background: var(--bg-surface-elevated);
+    }
+
+    .checklist-item input[type="checkbox"] {
+      accent-color: var(--accent);
+      margin-top: 3px;
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    .checklist-item.done span {
+      text-decoration: line-through;
+      color: var(--text-faint);
+    }
+
+    /* Audio Speaker Icon Button */
+    .speaker-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      font-size: 11px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      color: var(--text-muted);
+      cursor: pointer;
+      margin-left: 6px;
+      transition: all 0.15s;
+    }
+    .speaker-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin-block: 8px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      text-align: left;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    th {
+      background: var(--bg-surface-elevated);
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP STICKY BAR -->
+<header class="app-header">
+  <div class="header-top">
+    <div class="brand-badge">
+      <div class="brand-logo">IT</div>
+      <div>
+        <div class="brand-title">Lab Tester Prep Master</div>
+        <div class="brand-subtitle">Mississauga Career College · Remote Support</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" title="Toggle Light/Dark">🌓</button>
+      <button class="icon-btn" id="speakStopBtn" title="Stop Voice" style="display:none;">⏹️</button>
+      <button class="icon-btn" id="resetProgress" title="Reset Study Progress">🔄</button>
+    </div>
+  </div>
+
+  <div class="study-progress">
+    <div class="progress-info">
+      <span class="progress-label">Interview Readiness Score</span>
+      <span class="progress-value" id="progressPct">0% Mastered</span>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+  </div>
+
+  <nav class="nav-scroll" id="navTabs">
+    <button class="nav-pill active" data-tab="tab-academy">📚 Zero-to-Pro Academy</button>
+    <button class="nav-pill" data-tab="tab-pitch">🎯 Pitch & CV</button>
+    <button class="nav-pill" data-tab="tab-tech">💻 Tech Core</button>
+    <button class="nav-pill" data-tab="tab-culture">🏛️ College Fit</button>
+    <button class="nav-pill" data-tab="tab-flash">⚡ Flashcards</button>
+    <button class="nav-pill" data-tab="tab-scenarios">🛠️ Lab QA Quiz</button>
+    <button class="nav-pill" data-tab="tab-mock">🎙️ Mock Live</button>
+    <button class="nav-pill" data-tab="tab-cheat">📑 Cheat Sheet</button>
+  </nav>
+</header>
+
+<!-- MAIN CONTENT -->
+<main id="appMain">
+
+  <!-- ================= TAB 0: ZERO-TO-PRO ACADEMY ================= -->
+  <section class="tab-pane active" id="tab-academy">
+
+    <div class="card" style="background:linear-gradient(135deg, rgba(47, 129, 247, 0.12), rgba(163, 113, 247, 0.12)); border-color:var(--border-active);">
+      <div class="card-header">
+        <span class="badge badge-primary">Beginner to Professional</span>
+        <span class="badge badge-success">7 Structured Stages</span>
+      </div>
+      <h2 class="card-title" style="font-size:16px;">Zero Experience to Sysadmin Academy</h2>
+      <p style="font-size:12.5px; color:var(--text-muted); margin-top:4px; line-height:1.5;">
+        Start here if you have <strong>zero previous IT experience</strong>. This curriculum bridges the gap between everyday computer knowledge and the 2+ years of systems administration expertise showcased on your CV.
+      </p>
+    </div>
+
+    <input type="text" class="search-box" id="academySearch" placeholder="🔍 Search Academy: DORA, Kerberos, Snapshot, VLAN, LSDOU, chmod, NSG...">
+
+    <!-- STAGE 1: NETWORKING PLUMBING -->
+    <div class="card academy-card" data-keywords="networking ip address subnet default gateway dhcp dora apipa dns srv port protocol osi tcp ping tracert nslookup">
+      <div class="card-header">
+        <span class="badge badge-primary">Stage 1 of 7</span>
+        <span class="badge badge-success">Foundations</span>
+      </div>
+      <h2 class="card-title">🔌 Enterprise Networking Plumbing</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px; margin-bottom:10px;">
+        Before servers or virtual machines can work, the network pipes must flow. 80% of student lab errors are networking faults.
+      </p>
+
+      <!-- Topic 1.1 -->
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🌐</span> 1.1 IP Address, Subnet Mask & Default Gateway</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="analogy-box">
+            <strong>🏠 Real-World Analogy:</strong><br>
+            • <strong>IP Address (e.g., 192.168.1.15):</strong> Your house's unique street number.<br>
+            • <strong>Subnet Mask (e.g., 255.255.255.0 or /24):</strong> Defines the neighborhood limits. All houses sharing <code>192.168.1.X</code> are on your street; you can walk over and talk without leaving the neighborhood.<br>
+            • <strong>Default Gateway (e.g., 192.168.1.1):</strong> The highway on-ramp (the router). If you want to visit another town (the internet or another subnet), you MUST pass through the Default Gateway.
+          </div>
+          • <strong>RFC 1918 Private Ranges (Never routed to public internet):</strong><br>
+          - <code>192.168.0.0 – 192.168.255.255</code> (Home & small lab setups)<br>
+          - <code>10.0.0.0 – 10.255.255.255</code> (Enterprises & data centers)<br>
+          - <code>172.16.0.0 – 172.31.255.255</code> (Medium business/testing networks)<br>
+          <div class="sysadmin-phrasing">
+            <strong>💬 How to say it in the interview:</strong> "When diagnosing connectivity, I first inspect <code>ipconfig /all</code> to confirm the host has a valid IPv4 address on the correct subnet and can reach its default gateway."
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 1.2 -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🔢</span> 1.2 Subnetting Quick Calculation Table (/24 to /30)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          Every IP subnet reserves 2 addresses: <strong>Network ID</strong> (first) and <strong>Broadcast IP</strong> (last).<br>
+          <em>Usable Hosts Formula:</em> <code>2^(32 - CIDR) - 2</code>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>CIDR</th><th>Subnet Mask</th><th>Total IPs</th><th>Usable Hosts</th><th>Where Used</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>/24</td><td>255.255.255.0</td><td>256</td><td><strong>254</strong></td><td>Standard student lab subnet</td></tr>
+                <tr><td>/26</td><td>255.255.255.192</td><td>64</td><td><strong>62</strong></td><td>Department partition</td></tr>
+                <tr><td>/27</td><td>255.255.255.224</td><td>32</td><td><strong>30</strong></td><td>Small server rack</td></tr>
+                <tr><td>/28</td><td>255.255.255.240</td><td>16</td><td><strong>14</strong></td><td>Management VLAN</td></tr>
+                <tr><td>/30</td><td>255.255.255.252</td><td>4</td><td><strong>2</strong></td><td>Point-to-Point router link</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 1.3 & 1.4 -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🔄</span> 1.3 DHCP DORA Process & APIPA (169.254.x.x)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="analogy-box">
+            <strong>🏨 Hotel Analogy:</strong> DHCP is the hotel front desk. When a guest arrives, the receptionist gives them an available room key (IP lease) with a checkout date.
+          </div>
+          <strong>The 4-Step DORA Handshake (UDP 67 Server / 68 Client):</strong><br>
+          1. <strong>Discover:</strong> Booted VM broadcasts: <em>"Who has a DHCP server? I need an IP!"</em><br>
+          2. <strong>Offer:</strong> DHCP server answers: <em>"I offer 192.168.1.50 with mask 255.255.255.0."</em><br>
+          3. <strong>Request:</strong> Client replies: <em>"I accept the lease for 192.168.1.50!"</em><br>
+          4. <strong>Acknowledge:</strong> Server confirms: <em>"Leased for 8 days. Here is your DNS and Gateway."</em><br><br>
+          <div class="callout callout-warning">
+            <strong>⚠️ The Golden Interview Trap: APIPA (169.254.x.x)</strong><br>
+            If DHCP fails or the VM network adapter is disconnected, Windows automatically self-assigns an IP in the <code>169.254.0.1 – 169.254.255.254</code> range. It creates a local island: the VM <strong>cannot access other subnets or the internet</strong>.
+          </div>
+          <div class="sysadmin-phrasing">
+            <strong>💬 How to say it in the interview:</strong> "If a student reports no internet and their IP starts with 169.254, I know the DHCP handshake failed. I immediately check if the DHCP service is running and verify the VM's vSwitch port group."
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 1.5 -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>📖</span> 1.4 DNS & Why Active Directory Requires SRV Records</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="analogy-box">
+            <strong>📖 Phonebook Analogy:</strong> You don't memorize Google's numerical IP (142.250.190.46); you type <code>google.com</code>. DNS looks up the human name and returns the machine IP.
+          </div>
+          • <strong>Why Active Directory Cannot Live Without DNS:</strong><br>
+          Active Directory registers special <strong>SRV (Service) records</strong> in DNS (e.g., <code>_ldap._tcp.dc._msdcs.corp.local</code>). When a Windows client wants to join the domain, it asks DNS: <em>"Where is the Domain Controller running LDAP?"</em> DNS replies with the DC's IP.<br>
+          • <strong>Top Student Lab Failure:</strong> The student's VM has its DNS set to <code>8.8.8.8</code> (Google) instead of the Domain Controller's IP. Google has no idea where <code>corp.local</code> is, so domain join fails.
+        </div>
+      </div>
+
+      <!-- Topic 1.6 & 1.7 -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🛠️</span> 1.5 7-Layer OSI Troubleshooting & Diagnostic CLI</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          Always troubleshoot from <strong>Layer 1 upward</strong> (Bottom-Up):<br>
+          • <strong>L1 Physical:</strong> Is the virtual network cable plugged in? (VMware connected checkbox).<br>
+          • <strong>L2 Data Link:</strong> Is the VM on the right VLAN / vSwitch port group?<br>
+          • <strong>L3 Network:</strong> Does the VM have a valid IP? Can it ping its Default Gateway?<br>
+          • <strong>L4 Transport:</strong> Is the target TCP port open (e.g. 3389 for RDP, 53 for DNS)?<br>
+          • <strong>L7 Application:</strong> Is the web server or Active Directory service running?<br><br>
+          <strong>The Universal Diagnostic Sequence:</strong>
+          <div class="code-block">ping 127.0.0.1           # Test local TCP/IP stack
+ping 192.168.1.1         # Test reachability to local Gateway
+ping 8.8.8.8             # Test external internet routing
+ping google.com          # Test DNS name resolution
+tracert 8.8.8.8          # Trace hop-by-hop packet route
+nslookup dc01.corp.local # Query DNS for domain controller</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STAGE 2: ACTIVE DIRECTORY -->
+    <div class="card academy-card" data-keywords="active directory ad domain controller dc forest ou object gpo lsdou fsmo kerberos ldap powershell">
+      <div class="card-header">
+        <span class="badge badge-primary">Stage 2 of 7</span>
+        <span class="badge badge-success">Identity & Access</span>
+      </div>
+      <h2 class="card-title">🏢 Active Directory & Windows Server</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px; margin-bottom:10px;">
+        In consumer tech, each PC has a separate login. In an enterprise college, Active Directory centralizes control of 1,000 users and computers.
+      </p>
+
+      <!-- Topic 2.1 & 2.2 -->
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🌳</span> 2.1 The Hierarchy: Forests, Domains, OUs & Objects</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="analogy-box">
+            <strong>🏢 Corporate Building Analogy:</strong><br>
+            • <strong>Forest:</strong> The entire multinational corporation umbrella.<br>
+            • <strong>Domain:</strong> A specific regional branch office sharing a single database (<code>NTDS.dit</code>).<br>
+            • <strong>OU (Organizational Unit):</strong> Department filing cabinets inside the office (e.g. "Students", "Faculty", "Lab Computers"). Used to organize users and apply Group Policies.<br>
+            • <strong>Objects:</strong> The individual employee files, computers, and printers inside the cabinet.
+          </div>
+          • <strong>Security vs Distribution Groups:</strong><br>
+          - <em>Security Group:</em> Used to assign resource permissions (e.g. "Grades-Folder-Read-Access").<br>
+          - <em>Distribution Group:</em> Strictly for email broadcasts via Outlook/Exchange. Cannot be given permissions!
+        </div>
+      </div>
+
+      <!-- Topic 2.3 -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>📜</span> 2.2 Group Policy Objects (GPOs) & The LSDOU Rule</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>What is a GPO?</strong> A centralized policy pushed by IT to hundreds of PCs at once (e.g. disable USB drives, enforce 12-character passwords, set desktop wallpaper).<br><br>
+          <strong>LSDOU Processing Order:</strong><br>
+          1. <strong>L</strong>ocal machine policy<br>
+          2. <strong>S</strong>ite policy<br>
+          3. <strong>D</strong>omain root policy<br>
+          4. <strong>OU</strong> policy (child OUs apply after parent OUs)<br>
+          <em>The Rule:</em> Settings applied <strong>later in the hierarchy overwrite earlier conflicting settings</strong>.<br>
+          <em>Exceptions:</em><br>
+          • <strong>Enforced:</strong> A GPO set to Enforced at the Domain level cannot be overridden by any child OU.<br>
+          • <strong>Block Inheritance:</strong> An OU can block policies flowing down from parent levels.<br><br>
+          <strong>Essential Diagnostic Commands:</strong>
+          <div class="code-block">gpupdate /force     # Force machine to immediately apply new GPOs
+gpresult /r         # Display summary of applied policies for user & computer
+gpresult /h gpo.html# Generate detailed HTML diagnostic report</div>
+        </div>
+      </div>
+
+      <!-- Topic 2.4 -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>👑</span> 2.3 The 5 FSMO Roles (Explained Simply)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          Active Directory allows multiple Domain Controllers to replicate changes, but 5 critical jobs can only be handled by a single DC at any moment:<br><br>
+          <strong>Forest-Wide (Only 1 in the entire organization):</strong><br>
+          1. <strong>Schema Master:</strong> Dictates the structural blueprint of AD (what fields exist for a user).<br>
+          2. <strong>Domain Naming Master:</strong> Authorizes adding or removing domains from the forest.<br><br>
+          <strong>Domain-Wide (1 per domain):</strong><br>
+          3. <strong>PDC Emulator (Most Critical):</strong> Master time source (NTP), processes password changes immediately, handles account lockouts.<br>
+          4. <strong>RID Master:</strong> Issues pools of Relative IDs so every new user/computer gets a unique SID.<br>
+          5. <strong>Infrastructure Master:</strong> Updates cross-domain object references.
+          <div class="sysadmin-phrasing">
+            <strong>💬 How to say it in the interview:</strong> "If users experience login failures after a password reset, or client clocks drift, I immediately investigate the health of the PDC Emulator FSMO role."
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 2.5 -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>💻</span> 2.4 Domain Join & Essential PowerShell for AD</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>How a Computer Joins a Domain:</strong><br>
+          1. Admin types domain name (e.g. <code>corp.local</code>) in System Properties.<br>
+          2. Client queries DNS for <code>_ldap._tcp.dc._msdcs.corp.local</code>.<br>
+          3. DNS returns the Domain Controller's IP.<br>
+          4. Client contacts DC on Port 88 (Kerberos) and prompts for Domain Admin credentials.<br>
+          5. Computer account is created in AD; machine reboots.<br><br>
+          <strong>Essential PowerShell Cmdlets for Sysadmins:</strong>
+          <div class="code-block">Get-ADUser -Identity "jdoe" -Properties *     # View all attributes
+Unlock-ADAccount -Identity "jdoe"              # Unlock locked account
+Set-ADAccountPassword "jdoe" -Reset            # Reset user password
+New-ADUser -Name "Jane Smith" -SamAccountName "jsmith" -Enabled $true</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STAGE 3: VMWARE VSPHERE -->
+    <div class="card academy-card" data-keywords="vmware vsphere esxi vcenter hypervisor type 1 type 2 snapshot backup vswitch port group vmotion vm tools">
+      <div class="card-header">
+        <span class="badge badge-purple">Stage 3 of 7</span>
+        <span class="badge badge-success">Virtualization</span>
+      </div>
+      <h2 class="card-title">🖥️ VMware vSphere & Hypervisors</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px; margin-bottom:10px;">
+        Colleges never let students practice on physical servers. Every student lab runs inside virtual machines.
+      </p>
+
+      <!-- Topic 3.1 & 3.2 -->
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>⚙️</span> 3.1 Type 1 (ESXi) vs Type 2 Hypervisors</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="analogy-box">
+            <strong>🏢 Real-World Analogy:</strong><br>
+            • <strong>Type 1 (Bare-Metal):</strong> An apartment building built directly on the foundation. High-efficiency, enterprise grade.<br>
+            • <strong>Type 2 (Hosted):</strong> Tents pitched on top of an apartment floor. Easy to set up for personal use, but has extra overhead.
+          </div>
+          • <strong>Type 1 (Bare-Metal):</strong> Installed directly on physical server hardware without any Windows/Linux OS underneath (e.g. <strong>VMware ESXi</strong>, Microsoft Hyper-V). Enterprise standard.<br>
+          • <strong>Type 2 (Hosted):</strong> Installed as an application inside Windows/macOS (e.g. <strong>VMware Workstation Pro</strong>, VirtualBox). Used for desktop testing.<br>
+          • <strong>vCenter Server:</strong> Central management console for managing clusters of ESXi hosts, enabling vMotion (live migration) and High Availability (HA).
+        </div>
+      </div>
+
+      <!-- Topic 3.3 -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>📸</span> 3.2 Snapshots vs Backups (The #1 Interview Trap)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>How a Snapshot Works:</strong><br>
+          When you take a snapshot, VMware freezes the original virtual hard disk (<code>.vmdk</code>) as read-only. All new writes are redirected to a delta file (<code>-delta.vmdk</code>). Clicking "Revert" simply throws away the delta file.<br><br>
+          <div class="callout callout-warning">
+            <strong>⚠️ Why Snapshots are NOT Backups:</strong><br>
+            1. <strong>Dependency:</strong> If the base disk corrupts or is deleted, all snapshots are completely useless.<br>
+            2. <strong>Storage Exhaustion:</strong> Delta files grow continuously, increasing disk read latency and filling up datastores.<br>
+            3. <strong>Lab Tester Use:</strong> We use snapshots strictly to revert VMs to a clean baseline before and after testing exercises.
+          </div>
+          <div class="sysadmin-phrasing">
+            <strong>💬 How to say it in the interview:</strong> "I always emphasize to students that snapshots are short-term rollbacks for lab exercises, never permanent backups, because delta chains degrade datastore I/O performance."
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 3.4 & 3.5 -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🌐</span> 3.3 Virtual Networking (vSwitch) & VMware Tools</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>Standard Switch (VSS):</strong> Virtual switch configured on an individual ESXi host.<br>
+          • <strong>Distributed Switch (VDS):</strong> Unified virtual switch spanning an entire cluster of hosts in vCenter.<br>
+          • <strong>Port Groups:</strong> Logical network connections on a switch (e.g., "Student-Lab-Net", "VLAN-20").<br>
+          • <strong>VMware Tools:</strong> Essential driver suite inside guest OS providing:<br>
+          - <code>VMXNET3</code> virtual network driver for 10 Gbps speeds.<br>
+          - Smooth mouse movement without ungrabbing keyboard.<br>
+          - Time sync with ESXi host clock.<br>
+          - Graceful guest OS shutdown.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STAGE 4: CLOUD AZURE & M365 -->
+    <div class="card academy-card" data-keywords="cloud azure microsoft 365 m365 iaas paas saas entra id vnet nsg exchange online shared mailbox mfa">
+      <div class="card-header">
+        <span class="badge badge-warning">Stage 4 of 7</span>
+        <span class="badge badge-primary">Cloud Core</span>
+      </div>
+      <h2 class="card-title">☁️ Microsoft Azure & Microsoft 365</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px; margin-bottom:10px;">
+        Modern colleges operate in a hybrid cloud model, combining on-premises Active Directory with Azure and Microsoft 365.
+      </p>
+
+      <!-- Topic 4.1 -->
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>☁️</span> 4.1 Cloud Service Models: IaaS, PaaS, SaaS</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="analogy-box">
+            <strong>🍕 The Pizza Analogy:</strong><br>
+            • <strong>On-Premises:</strong> Making pizza at home from scratch (you buy the oven, cheese, dough, clean dishes).<br>
+            • <strong>IaaS (Infrastructure as a Service):</strong> Take and bake (store gives you the pizza, you bake it in your oven). You manage the OS, software, and patches. E.g., <strong>Azure Virtual Machines, VNets</strong>.<br>
+            • <strong>PaaS (Platform as a Service):</strong> Pizza delivery (pizza arrives ready, you just supply the table and drinks). Provider manages OS and scaling; you just upload code/data. E.g., <strong>Azure App Services, Azure SQL</strong>.<br>
+            • <strong>SaaS (Software as a Service):</strong> Eating at a restaurant (you just sit and eat). Everything is managed for you. E.g., <strong>Microsoft 365, Teams, Outlook</strong>.
+          </div>
+        </div>
+      </div>
+
+      <!-- Topic 4.2 -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🆔</span> 4.2 Microsoft Entra ID (Azure AD) vs On-Premises AD</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>On-Premises AD:</strong> Hierarchical (Forest/Domain/OU), Kerberos/NTLM authentication, LDAP queries, GPOs, requires Windows Server Domain Controllers.<br>
+          • <strong>Microsoft Entra ID:</strong> Flat directory (Users & Groups), web protocols (OAuth 2.0, OpenID Connect, SAML), REST API (Microsoft Graph), governed by <strong>Conditional Access policies and MFA</strong>.<br>
+          • <strong>Hybrid Identity:</strong> <em>Microsoft Entra Connect</em> syncs on-premises users and password hashes to the cloud for Single Sign-On (SSO).
+        </div>
+      </div>
+
+      <!-- Topic 4.3 & 4.4 -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🛡️</span> 4.3 Azure VNets, NSGs & M365 Shared Mailboxes</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>Azure NSG (Network Security Group):</strong> Virtual firewall that controls inbound/outbound traffic based on 5 parameters (Source, Source Port, Destination, Destination Port, Protocol).<br>
+          • <strong>NSG Priority Rule:</strong> Rules range from 100 to 4096. <strong>Lower numbers have higher priority!</strong> Rule 100 is evaluated before Rule 200.<br><br>
+          • <strong>Exchange Online Shared Mailboxes (e.g. support@college.ca):</strong><br>
+          - <strong>Free of charge:</strong> Does NOT require a paid user license if mailbox is under 50 GB!<br>
+          - <em>Send As:</em> Recipient sees email came directly from <code>support@college.ca</code>.<br>
+          - <em>Send on Behalf:</em> Recipient sees <code>User on behalf of support@college.ca</code>.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STAGE 5: PARTNER TECHNOLOGIES -->
+    <div class="card academy-card" data-keywords="partner red hat rhel linux bash systemctl chmod chown cisco switching vlan trunk citrix vdi storefront vda">
+      <div class="card-header">
+        <span class="badge badge-danger">Stage 5 of 7</span>
+        <span class="badge badge-purple">Partner Tech</span>
+      </div>
+      <h2 class="card-title">🐧 Red Hat Linux, Cisco & Citrix</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px; margin-bottom:10px;">
+        The college is partnered with Citrix, Cisco, and Red Hat. Having these fundamentals protects you from any curveball question.
+      </p>
+
+      <!-- Topic 5.1 -->
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🐧</span> 5.1 Red Hat Enterprise Linux (RHEL) & Permissions</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>Directory Hierarchy:</strong><br>
+          - <code>/etc</code>: System configuration files (network scripts, service configs).<br>
+          - <code>/var/log</code>: System log files (check <code>/var/log/messages</code> when errors occur).<br>
+          - <code>/var/www/html</code>: Web server root directory.<br><br>
+          • <strong>Permissions Math (Read=4, Write=2, Execute=1):</strong><br>
+          - <code>chmod 755 script.sh</code>: Owner has 7 (rwx), Group has 5 (r-x), Others have 5 (r-x). Standard for scripts and web folders.<br>
+          - <code>chmod 644 config.txt</code>: Owner has 6 (rw-), Group/Others have 4 (r--). Standard for files.<br>
+          - <code>chown -R apache:apache /var/www/html</code>: Recursively change owner and group.<br><br>
+          • <strong>Managing Services (systemd):</strong>
+          <div class="code-block">systemctl status httpd     # Check if service is active
+systemctl restart httpd    # Restart service after editing configs
+journalctl -u httpd -xe    # View detailed failure crash logs</div>
+        </div>
+      </div>
+
+      <!-- Topic 5.2 -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🔀</span> 5.2 Cisco Switching: Access vs Trunk Ports</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>VLAN (Virtual LAN):</strong> Breaks up physical switches into separate broadcast domains.<br>
+          • <strong>Access Port:</strong> Belongs to a single VLAN; connects end devices (PCs, printers). Traffic is untagged.<br>
+          • <strong>Trunk Port:</strong> Connects switch-to-switch or switch-to-router; carries traffic for multiple VLANs using <strong>IEEE 802.1Q</strong> encapsulation tags.<br>
+          • <strong>Inter-VLAN Routing:</strong> Machines in different VLANs cannot talk at Layer 2; traffic must be forwarded by a Layer 3 router or Layer 3 switch.
+        </div>
+      </div>
+
+      <!-- Topic 5.3 -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🖥️</span> 5.3 Citrix Virtual Apps & Desktops (VDI)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          Citrix enables remote students to stream pre-configured Windows/Linux lab machines directly inside a web browser.<br>
+          • <strong>Citrix StoreFront:</strong> The web authentication portal where students log in.<br>
+          • <strong>VDA (Virtual Delivery Agent):</strong> Agent installed on the lab VM that streams the desktop session over the <strong>HDX / ICA protocol</strong>.<br>
+          • <em>Common Student Issue:</em> Session freezes due to high network packet loss or VDA displays "Unregistered" in the management console.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STAGE 6: LAB TESTER METHODOLOGY -->
+    <div class="card academy-card" data-keywords="lab tester methodology quality assurance support tickets sop documentation ui drift">
+      <div class="card-header">
+        <span class="badge badge-purple">Stage 6 of 7</span>
+        <span class="badge badge-success">Job Execution</span>
+      </div>
+      <h2 class="card-title">🛠️ The Lab Tester & Support Workflow</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px; margin-bottom:10px;">
+        What you will actually do every day in the Mississauga Career College.
+      </p>
+
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>📋</span> 6.1 The 4-Step Lab Testing Protocol</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          1. <strong>Clean Baseline Revert:</strong> Always revert VM to a pristine initial snapshot. Never test on a machine with residual settings.<br>
+          2. <strong>Literal Step Execution:</strong> Follow the lab book with an absolute beginner's mindset. Never perform unwritten steps in your head.<br>
+          3. <strong>UI Drift Audit:</strong> Check if Microsoft Azure, VMware, or Windows renamed buttons, moved blades, or deprecated PowerShell cmdlets.<br>
+          4. <strong>Visual Milestone Verification:</strong> Ensure every key step has an updated screenshot with highlighted callouts so students have visual confirmation of success.
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🤝</span> 6.2 Student Support De-Escalation Formula</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          When a student messages: <em>"Nothing is working, Step 14 is broken, I'm going to fail!"</em>:<br>
+          1. <strong>Empathize & De-escalate:</strong> <em>"I completely understand how frustrating this error is, let's look at it together."</em><br>
+          2. <strong>Gather Concrete Evidence:</strong> <em>"Please send me a full screenshot showing the error message and your terminal window."</em><br>
+          3. <strong>Guide Discovery:</strong> <em>"Notice what the command output says about DNS? What IP address did we assign to the adapter in Step 4?"</em> (Never just give the answer; teach them the diagnostic observation).
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STAGE 7: SYSADMIN SPEAKING -->
+    <div class="card academy-card" data-keywords="jargon sysadmin phrasing vocabulary interview translation">
+      <div class="card-header">
+        <span class="badge badge-success">Stage 7 of 7</span>
+        <span class="badge badge-primary">Interview Mastery</span>
+      </div>
+      <h2 class="card-title">🗣️ "Speaking Like a Seasoned Sysadmin"</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px; margin-bottom:10px;">
+        Use the exact terminology and phrasing that seasoned IT professionals use naturally.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>What an Amateur Says</th><th>What a Seasoned Sysadmin Says</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>"I turned it off and on."</td><td><em>"I bounced the service / power-cycled the host."</em></td></tr>
+            <tr><td>"Internet doesn't work on the VM."</td><td><em>"The VM is failing to route to the default gateway; it received an APIPA lease."</em></td></tr>
+            <tr><td>"The password isn't working."</td><td><em>"It could be an account lockout or a Kerberos time skew on the PDC Emulator."</em></td></tr>
+            <tr><td>"I don't know how to do that."</td><td><em>"I haven't deployed that in production, but my diagnostic process is to verify event logs, consult vendor docs, and test in a sandbox VM."</em></td></tr>
+            <tr><td>"The website won't open in Azure."</td><td><em>"Inbound traffic is likely being dropped by an NSG security rule."</em></td></tr>
+            <tr><td>"I fixed the permissions."</td><td><em>"I corrected the DACL permissions and assigned read access to the service account."</em></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ================= TAB 1: PITCH & CV STRATEGY ================= -->
+  <section class="tab-pane" id="tab-pitch">
+
+    <!-- 90-Second Speech Simulator -->
+    <div class="timer-card">
+      <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+        <span class="badge badge-primary">Practice Out Loud</span>
+        <span class="badge badge-success">Target: 90s</span>
+      </div>
+      <div class="timer-display" id="pitchTimerDisplay">01:30</div>
+      <div class="timer-controls">
+        <button class="btn btn-primary btn-sm" id="timerStartBtn">▶ Start Timer</button>
+        <button class="btn btn-sm" id="timerResetBtn">↺ Reset</button>
+        <button class="btn btn-sm" id="pitchSpeakBtn">🎧 Listen Sample</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-primary">Opening Elevator Pitch</span>
+        <button class="btn btn-sm" id="copyPitchBtn">📋 Copy</button>
+      </div>
+      <h2 class="card-title">"Tell Me About Yourself" Script</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:4px; margin-bottom:10px;">
+        Designed specifically for Abdelghafaar: links your Computer Engineering degree, ITI diploma, remote support background, and SOP documentation directly to this Lab Tester & Training role.
+      </p>
+
+      <div class="callout callout-info" id="pitchScriptText">
+        "I’m a Computer Engineering graduate from Eastern Mediterranean University with a post-graduate diploma in full-stack systems and server administration from ITI. Over the last two years, I’ve worked extensively in remote digital platform administration, IT technical support, and user access security.<br><br>
+        What makes me particularly excited about this role with your college in Mississauga is that throughout my experience—whether at NEIS, Soft House, or my remote contracts—a central pillar of my daily work has been <strong>testing technical workflows, creating step-by-step SOPs and training guides, and troubleshooting complex issues for non-technical users under tight SLAs</strong>.<br><br>
+        I have solid practical and academic foundations in <strong>Active Directory, VMware vSphere, Cisco networking, Microsoft Azure, and Microsoft 365</strong>. I have a meticulous eye for detail, I love dissecting lab instructions from a student's perspective so they never get stuck, and I deeply care about educational impact. I’m eager to bring my troubleshooting mindset and strong work ethic to your 15-person team."
+      </div>
+    </div>
+
+    <!-- CV Transition & Defense Arsenal -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-warning">Critical Defenses</span>
+        <span class="badge badge-purple">Must Prepare</span>
+      </div>
+      <h2 class="card-title">CV Experience & Transition Stories</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-bottom:10px;">
+        Bulletproof answers to the toughest questions interviewers will ask about your CV, timeline, and transitions.
+      </p>
+
+      <!-- 1. The Developer vs Lab Tester Dilemma -->
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title">
+            <span>⭐</span> Why Lab Tester / Tech Support rather than Software Developer?
+          </div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>The Danger:</strong> The interviewer sees your Computer Engineering degree and ITI Full-Stack Web Development diploma and worries: <em>"Won't you get bored testing lab manuals and leave as soon as a coding job opens up?"</em><br><br>
+          <strong>The Winning Strategy:</strong>
+          "While I have strong development and scripting skills, my true passion lies in <strong>systems infrastructure, technical training, and educational technology</strong>. As a developer, you often work in an isolated silo. As an IT Lab Tester and Support Specialist, I get to touch the entire enterprise technology stack—Active Directory, VMware, Cisco routers, Azure, and Red Hat Linux—while directly empowering students to transform their careers.<br><br>
+          Furthermore, having a Computer Engineering and development foundation makes me a <strong>far superior Lab Tester</strong>: I understand the underlying system architecture, I can automate lab sanity checks using PowerShell/Bash, and I can dissect step-by-step instructions with surgical precision. I want a long-term home in IT education."
+        </div>
+      </div>
+
+      <!-- 2. Remote from Cairo to Mississauga -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title">
+            <span>🇨🇦</span> Why a Canadian College from Cairo, Egypt? (Remote Setup)
+          </div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>The Strategic Answer:</strong>
+          "First, regarding time zones: Ontario operates on Eastern Standard Time (EST). The 6-to-7 hour time difference between Cairo and Mississauga is actually a massive advantage. When working 2:00 PM to 10:00 PM Cairo time, I am <strong>100% synchronized with Canadian business hours (8:00 AM to 4:00 PM EST)</strong> while having undisturbed morning hours to test lab books before students even log in.<br><br>
+          Second, I have spent the last two years excelling in fully remote contracts across Cyprus and Egypt. I have a dedicated, distraction-free home office setup, enterprise-grade high-speed fiber internet with cellular failover, and a strict culture of proactive communication, daily status reporting, and immediate SLA response."
+        </div>
+      </div>
+
+      <!-- 3. The Application Question: Computer & Internet Specs -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title">
+            <span>⚡</span> Application Question: "Do you have a high-speed PC & fast internet?"
+          </div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>Exact Script to Provide:</strong>
+          "Yes, absolutely. My workstation is custom-built specifically for virtualization and systems administration:<br>
+          • <strong>CPU:</strong> High-performance multi-core processor (8 cores / 16 threads) capable of running multiple nested VMs simultaneously.<br>
+          • <strong>RAM:</strong> 32 GB high-speed RAM (allows running Windows Server Domain Controller, Windows 11 client, and Linux/VMware instances concurrently without memory bottlenecks).<br>
+          • <strong>Storage:</strong> 1 TB NVMe SSD (delivering ultra-fast VM boot times and disk I/O for lab snapshot reverts).<br>
+          • <strong>Internet:</strong> 100+ Mbps Fiber connection with low ping (&lt;15ms) + secondary 4G/5G LTE mobile hotspot backup for automatic failover.<br>
+          • <strong>Power Backup:</strong> Uninterruptible Power Supply (UPS) ensuring zero drop-offs during live lab testing or student support sessions.<br>
+          • <strong>Display & Audio:</strong> Dual monitor workstation and studio noise-canceling headset."
+        </div>
+      </div>
+
+      <!-- 4. Why Leave Current Freelance/Remote -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title">
+            <span>🔹</span> Why leave current Freelance/Remote contract (Jul 2024–Present)?
+          </div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>Key Answer:</strong> "Freelancing gave me exceptional independence, exposure to security audits, access control, and remote user support under tight deadlines. However, freelance contracts are inherently transactional. I am looking for a <strong>dedicated, long-term contractual role with an established educational institution</strong>. I thrive when I can dedicate 100% of my energy to building, validating, and supporting IT training environments (VMware, AD, Azure, Cisco) and directly impacting student learning."
+        </div>
+      </div>
+
+      <!-- 5. Why NEIS was 5 months (Feb-Jun 2026) -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title">
+            <span>🔹</span> Why was the NEIS role 5 months (Feb–Jun 2026)?
+          </div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>Key Answer:</strong> "NEIS was a targeted fixed-scope contract where my primary mandate was to <strong>overhaul the corporate web platform operations, establish the access authorization matrix, and author comprehensive step-by-step SOPs and staff training video manuals</strong>. Once those operational systems and documentation packages were successfully delivered, tested, and handed over to the internal team, the project scope was completed."
+        </div>
+      </div>
+
+      <!-- 6. Why Leave Soft House Solutions (Jan-Jun 2025) -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title">
+            <span>🔹</span> Why leave Soft House Solutions (Jan–Jun 2025)?
+          </div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>Key Answer:</strong> "I concluded my role at Soft House Solutions because I was awarded a highly competitive, government-sponsored scholarship at the <strong>Information Technology Institute (ITI)</strong>. It was an intensive post-graduate program focused on enterprise systems, server administration, automation, and security. It was an invaluable opportunity to elevate my technical foundations."
+        </div>
+      </div>
+
+      <!-- 7. Why Hala Ticaret was 2 months (May-Jul 2024) -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title">
+            <span>🔹</span> Why was Hala Ticaret only 2 months (May–Jul 2024)?
+          </div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>Key Answer:</strong> "I graduated from Eastern Mediterranean University in Cyprus in May 2024. Hala Ticaret was a planned short-term transitional project immediately following graduation to optimize their catalog pipelines and automated notification workflows before I relocated back to Cairo to establish my remote operations and prepare for ITI."
+        </div>
+      </div>
+
+      <!-- 8. Certifications: A+, CCNA, CCA, VCP -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title">
+            <span>📜</span> Addressing Certifications (A+, CCNA, CCA, VCP)
+          </div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>How to Address:</strong>
+          "While I do not hold the formal physical badges for CCNA or VCP yet, my 5-year Computer Engineering degree and practical admin experience covered the exact competencies: Cisco subnetting, switching, routing, VMware ESXi hypervisor architecture, and Active Directory identity management. I already have the practical knowledge to test and validate these lab exercises, and I am actively studying and eager to sit for these vendor certifications utilizing your college's partner vouchers."
+        </div>
+      </div>
+
+      <!-- 9. MS Office Skills in Lab Development -->
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title">
+            <span>📑</span> MS Office Proficiency (Word, Excel, PowerPoint, Outlook)
+          </div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>How to Showcase:</strong>
+          "The job description highlights MS Office because lab books live and die by their formatting:<br>
+          • <strong>MS Word:</strong> I use formal Heading Styles, automated Tables of Contents, cross-references, step callout boxes (Note, Tip, Caution), and annotated high-resolution screenshots with callout arrows so instructions are crystal clear.<br>
+          • <strong>MS Excel:</strong> I build tracking matrices for lab test passes, student bug logs, and discrepancy resolution tracking.<br>
+          • <strong>MS PowerPoint:</strong> Creating clear, visual network architecture diagrams and conceptual flowcharts for student lab briefings.<br>
+          • <strong>MS Outlook:</strong> Writing polite, clear, and empathetic support responses to student inquiries with step-by-step troubleshooting instructions."
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Candidate Prep Checklist -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-purple">Candidate Checklist</span>
+        <span class="badge badge-primary">Interactive</span>
+      </div>
+      <h2 class="card-title">Pre-Interview Readiness Checklist</h2>
+      <div style="display:flex; flex-direction:column; gap:4px; margin-top:8px;">
+        <label class="checklist-item" data-id="chk1">
+          <input type="checkbox">
+          <span>Rehearse 90s pitch smoothly with the timer under 90s</span>
+        </label>
+        <label class="checklist-item" data-id="chk2">
+          <input type="checkbox">
+          <span>Memorize Active Directory FSMO roles & GPO LSDOU order</span>
+        </label>
+        <label class="checklist-item" data-id="chk3">
+          <input type="checkbox">
+          <span>Explain why VM Snapshot ≠ Backup with technical reasoning</span>
+        </label>
+        <label class="checklist-item" data-id="chk4">
+          <input type="checkbox">
+          <span>Master DHCP DORA, APIPA (169.254.x.x), and DNS hierarchy</span>
+        </label>
+        <label class="checklist-item" data-id="chk5">
+          <input type="checkbox">
+          <span>Prepare defense for Developer vs Lab Tester transition</span>
+        </label>
+        <label class="checklist-item" data-id="chk6">
+          <input type="checkbox">
+          <span>Prepare exact workstation & high-speed internet specifications</span>
+        </label>
+        <label class="checklist-item" data-id="chk7">
+          <input type="checkbox">
+          <span>Review Cisco VLAN/Trunking and Red Hat Linux permissions</span>
+        </label>
+        <label class="checklist-item" data-id="chk8">
+          <input type="checkbox">
+          <span>Prepare 2 STAR stories demonstrating radical accountability</span>
+        </label>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ================= TAB 2: TECH CORE REFERENCE ================= -->
+  <section class="tab-pane" id="tab-tech">
+    <input type="text" class="search-box" id="techSearch" placeholder="🔍 Search Active Directory, VMware, Cisco, Azure, Linux...">
+
+    <!-- 1. Active Directory -->
+    <div class="card tech-card" data-keywords="active directory ad domain gpo ou fsmo dns ldap kerberos ntds lsdou">
+      <div class="card-header">
+        <span class="badge badge-primary">Identity & Access</span>
+        <span class="badge badge-success">Top Priority</span>
+      </div>
+      <h2 class="card-title">1. Microsoft Active Directory (AD DS)</h2>
+
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>📂</span> Structure: Forest, Domain, OU & Objects</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>Forest:</strong> The highest logical security boundary. Contains one or more domain trees that share a common schema, global catalog, and directory configuration.<br>
+          • <strong>Domain:</strong> Administrative boundary storing objects (users, computers, groups) in the database <code>NTDS.dit</code>.<br>
+          • <strong>Organizational Unit (OU):</strong> Sub-containers inside a domain used to organize objects logically and link <strong>Group Policy Objects (GPOs)</strong>. OUs are not security principals.<br>
+          • <strong>Security vs Distribution Groups:</strong> Security groups assign permissions to resources (file shares, printers); Distribution groups are strictly for email broadcast lists (Exchange).
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>📜</span> Group Policy Objects (GPOs) & LSDOU Order</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>Processing Hierarchy (LSDOU):</strong><br>
+          1. <strong>Local:</strong> Local policy on machine.<br>
+          2. <strong>Site:</strong> AD physical site.<br>
+          3. <strong>Domain:</strong> Root domain policy.<br>
+          4. <strong>OU:</strong> Nested OUs from parent to child.<br>
+          <em>Rule:</em> Latest applied setting wins, <strong>unless</strong> a parent has <strong>"Enforced"</strong> (overrides everything) or an OU has <strong>"Block Inheritance"</strong>.<br>
+          • <strong>Crucial Diagnostic Commands:</strong>
+          <div class="code-block">gpupdate /force       # Force immediate GPO refresh
+gpresult /r           # Show applied computer & user GPOs
+gpresult /h gpo.html  # Export detailed HTML diagnostic report</div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>👑</span> The 5 FSMO Roles (Forest vs Domain Wide)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>Forest-Wide Roles (Only 1 per Forest):</strong><br>
+          1. <em>Schema Master:</em> Controls additions and edits to the AD schema classes/attributes.<br>
+          2. <em>Domain Naming Master:</em> Controls adding or removing domains/partitions from the forest.<br><br>
+          <strong>Domain-Wide Roles (1 per Domain):</strong><br>
+          3. <em>PDC Emulator:</em> Authoritative time source (NTP), processes password changes immediately, handles account lockouts.<br>
+          4. <em>RID Master:</em> Allocates pools of Relative IDs to Domain Controllers for creating unique SIDs.<br>
+          5. <em>Infrastructure Master:</em> Updates cross-domain object references and GUIDs.
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🔧</span> Common Student AD Lab Roadblocks</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>"Cannot join domain: Network path not found":</strong> The client VM is using 8.8.8.8 or router IP for DNS instead of the Domain Controller static IP.<br>
+          • <strong>GPO not applying:</strong> The computer object was left in the default <code>CN=Computers</code> container instead of being moved into the targeted OU where the GPO is linked.<br>
+          • <strong>Account Lockout:</strong> User exceeded bad password threshold. Fix via <code>Unlock-ADAccount -Identity username</code> in PowerShell.
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. VMware vSphere -->
+    <div class="card tech-card" data-keywords="vmware vsphere esxi vcenter vm snapshot backup vswitch vds vss portgroup vmotion">
+      <div class="card-header">
+        <span class="badge badge-purple">Virtualization</span>
+        <span class="badge badge-success">Top Priority</span>
+      </div>
+      <h2 class="card-title">2. VMware vSphere & Hypervisors</h2>
+
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🖥️</span> Type 1 vs Type 2 Hypervisors</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>Type 1 (Bare-Metal):</strong> Installed directly on physical server hardware without an underlying OS (e.g., <strong>VMware ESXi</strong>, Microsoft Hyper-V, Proxmox VE). High performance, enterprise standard.<br>
+          • <strong>Type 2 (Hosted):</strong> Runs as an application on top of an operating system (e.g., <strong>VMware Workstation Pro</strong>, Oracle VirtualBox). Used for desktop testing and individual student training labs.<br>
+          • <strong>vCenter Server:</strong> Centralized management appliance for managing clusters of ESXi hosts, enabling vMotion, HA, and DRS.
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>📸</span> Snapshots vs Backups (Why Snapshots Aren't Backups)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>How Snapshots Work:</strong> Taking a snapshot freezes the base <code>.vmdk</code> disk and redirects all subsequent writes to a delta/redo log file (<code>-delta.vmdk</code>). Reverting instantly restores the VM to that state.<br>
+          • <strong>Why Snapshots are NOT Backups:</strong><br>
+          1. Dependency: If the parent base disk is corrupted or deleted, the snapshot is 100% useless.<br>
+          2. Performance Degradation: Delta chains increase read latency and consume massive datastore space.<br>
+          • <strong>Lab Tester Best Practice:</strong> Always take a clean baseline snapshot before starting a lab exercise so you can revert and test again from scratch.
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🌐</span> Virtual Networking: vSwitch & Port Groups</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>Standard vSwitch (VSS):</strong> Configured on an individual ESXi host.<br>
+          • <strong>Distributed vSwitch (VDS):</strong> Centrally configured across multiple hosts in vCenter.<br>
+          • <strong>Port Groups:</strong> Logical network policies on a vSwitch (e.g., VM Network, Management Network, VLAN tags).<br>
+          • <strong>VMware Tools:</strong> Essential driver suite providing optimized video, mouse sync, VMXNET3 virtual NIC drivers, and guest OS heartbeat.
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Cisco & Networking -->
+    <div class="card tech-card" data-keywords="networking cisco ccna subnetting vlan trunk dora dhcp dns tcp ip switch router osi">
+      <div class="card-header">
+        <span class="badge badge-primary">Partner: Cisco</span>
+        <span class="badge badge-success">Core Pillar</span>
+      </div>
+      <h2 class="card-title">3. Networking & Cisco Lab Foundations</h2>
+
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🪜</span> OSI Model (7 Layers) vs TCP/IP Troubleshooting</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          1. <strong>Physical (L1):</strong> Cables, NIC link lights, SFP transceivers.<br>
+          2. <strong>Data Link (L2):</strong> MAC addresses, switches, VLANs, frames.<br>
+          3. <strong>Network (L3):</strong> IP addresses, routers, packets, ICMP.<br>
+          4. <strong>Transport (L4):</strong> TCP (reliable, 3-way handshake SYN-SYNACK-ACK) vs UDP (connectionless).<br>
+          5. <strong>Session (L5):</strong> Session establishment and termination.<br>
+          6. <strong>Presentation (L6):</strong> Formatting, SSL/TLS encryption, compression.<br>
+          7. <strong>Application (L7):</strong> DNS, DHCP, HTTP/HTTPS, SSH, RDP.<br>
+          <em>Troubleshooting Principle:</em> Always diagnose <strong>bottom-up</strong>: Check VM network cable connected → Check IP/DHCP lease → Check default gateway ping → Check DNS resolution.
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🔄</span> DHCP DORA & APIPA (169.254.x.x)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>DORA Process (UDP 67 Server / 68 Client):</strong><br>
+          • <strong>Discover:</strong> Client broadcasts to 255.255.255.255.<br>
+          • <strong>Offer:</strong> DHCP server offers an unassigned IP.<br>
+          • <strong>Request:</strong> Client requests the offered IP.<br>
+          • <strong>Acknowledge:</strong> Server confirms and binds the lease.<br>
+          <strong>APIPA (Automatic Private IP Addressing):</strong><br>
+          If no DHCP server responds, Windows self-assigns an IP in the <code>169.254.0.1 to 169.254.255.254</code> range with subnet mask <code>255.255.0.0</code>. It allows local link communication but <strong>cannot route to other subnets or the internet</strong>.
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🔀</span> Cisco Switching: VLANs, Trunks & Access Ports</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>VLAN (Virtual LAN):</strong> Breaks up broadcast domains on Layer 2 switches. Devices in different VLANs cannot communicate without a Layer 3 router (Router-on-a-Stick or L3 switch).<br>
+          • <strong>Access Port:</strong> Belongs to a single VLAN; carries untagged traffic to end devices (PCs, servers).<br>
+          • <strong>Trunk Port:</strong> Carries traffic for multiple VLANs between switches using the <strong>IEEE 802.1Q</strong> tagging standard.<br>
+          • <strong>Default Gateway:</strong> The router interface IP on the local subnet that forwards packets destined for remote networks.
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Microsoft Azure & Cloud -->
+    <div class="card tech-card" data-keywords="azure cloud entra id iaas paas saas vnet nsg resource group subscription">
+      <div class="card-header">
+        <span class="badge badge-warning">Partner: Microsoft</span>
+        <span class="badge badge-primary">Cloud Core</span>
+      </div>
+      <h2 class="card-title">4. Microsoft Azure & Cloud Architecture</h2>
+
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>☁️</span> Cloud Service Models: IaaS, PaaS, SaaS</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>IaaS (Infrastructure as a Service):</strong> Azure Virtual Machines, VNets, Managed Disks. You manage OS, patches, middleware, and applications. Microsoft manages physical hardware and hypervisors.<br>
+          • <strong>PaaS (Platform as a Service):</strong> Azure App Service, Azure SQL Database. You manage code and data; Microsoft manages OS, runtimes, and scaling.<br>
+          • <strong>SaaS (Software as a Service):</strong> Microsoft 365, OneDrive, Teams. End-user software fully maintained by the provider.
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🆔</span> Microsoft Entra ID vs On-Prem Active Directory</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>On-Premises AD:</strong> Hierarchical (Forest/Domain/OU), Kerberos & NTLM authentication, LDAP directory queries, managed via Group Policy (GPO).<br>
+          • <strong>Microsoft Entra ID (Azure AD):</strong> Flat cloud identity service, web protocols (OAuth 2.0, OpenID Connect, SAML), REST API queries (Microsoft Graph), secured via <strong>Conditional Access & MFA</strong>.<br>
+          • <strong>Entra Connect:</strong> Synchronizes on-premises user hashes to Entra ID for hybrid single sign-on (SSO).
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🛡️</span> Azure Virtual Networks & NSGs (Network Security Groups)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>VNet (Virtual Network):</strong> Isolated virtual network in Azure divided into subnets.<br>
+          • <strong>NSG (Network Security Group):</strong> Virtual firewall filtering inbound and outbound traffic based on 5-tuple: Source, Source Port, Destination, Destination Port, Protocol.<br>
+          • <em>Common Lab Issue:</em> Student cannot RDP (port 3389) or HTTP (port 80) into an Azure VM because the inbound NSG rule was either omitted or configured with wrong priority.
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Microsoft 365 Admin -->
+    <div class="card tech-card" data-keywords="microsoft 365 m365 exchange online shared mailbox licensing teams mfa entra">
+      <div class="card-header">
+        <span class="badge badge-success">M365 Admin</span>
+      </div>
+      <h2 class="card-title">5. Microsoft 365 Administration</h2>
+
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>📬</span> Exchange Online & Shared Mailboxes</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>Shared Mailbox:</strong> Allows a team to monitor and send email from a common address (e.g., <code>support@college.ca</code>). <strong>Does NOT require a paid license</strong> if storage is under 50 GB!<br>
+          • <strong>Delegation Permissions:</strong><br>
+          - <em>Send As:</em> Recipient sees the email came directly from the mailbox.<br>
+          - <em>Send on Behalf:</em> Recipient sees "User on behalf of Support".<br>
+          - <em>Read and Manage (Full Access):</em> Allows opening the mailbox in Outlook.
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🔐</span> Multi-Factor Authentication (MFA) & Security Defaults</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>Security Defaults:</strong> Microsoft-managed basic security settings that require all users to register for MFA using the Microsoft Authenticator app and block legacy authentication.<br>
+          • <strong>Conditional Access:</strong> Enterprise feature (Entra ID P1/P2) allowing granular if-then policies (e.g., "Require MFA if user logs in from outside Canada").
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Red Hat Enterprise Linux -->
+    <div class="card tech-card" data-keywords="red hat rhel linux bash systemctl chmod chown ssh journalctl grep permissions">
+      <div class="card-header">
+        <span class="badge badge-danger">Partner: Red Hat</span>
+        <span class="badge badge-primary">Linux Labs</span>
+      </div>
+      <h2 class="card-title">6. Red Hat Enterprise Linux (RHEL) Basics</h2>
+
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🐧</span> Essential Linux Lab Commands & Service Control</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          • <strong>Service Management (systemd):</strong>
+          <div class="code-block">systemctl status httpd     # Check service status
+systemctl restart httpd    # Restart service after config change
+systemctl enable httpd     # Enable service on boot</div>
+          • <strong>File Permissions & Ownership:</strong><br>
+          <code>chmod 755 filename</code> (rwxr-xr-x: Owner all, Group/Others read+execute)<br>
+          <code>chmod 644 filename</code> (rw-r--r--: Owner read+write, Others read)<br>
+          <code>chown -R apache:apache /var/www/html</code> (Change user and group ownership recursively).<br>
+          • <strong>Log Analysis:</strong>
+          <div class="code-block">journalctl -xe             # View detailed systemd failure logs
+tail -f /var/log/messages  # Live stream system events</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ================= TAB 3: COLLEGE FIT & VALUES ================= -->
+  <section class="tab-pane" id="tab-culture">
+
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-warning">Small Team DNA (15 People)</span>
+        <span class="badge badge-success">Mississauga, ON</span>
+      </div>
+      <h2 class="card-title">Core Values & Culture Alignment</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:4px; margin-bottom:12px;">
+        The job post states: <em>"A team of people who care about our and your values more than your experience."</em> Here is how to prove you embody every single one.
+      </p>
+
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title">
+            <span>🛡️</span> 1. Absolute Accountability & Full Responsibility
+          </div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>Job Requirement:</strong> <em>"Accountable, and you take full responsibility for your actions and inactions."</em><br><br>
+          <strong>What Interviewers Hate:</strong> Candidates who blame students ("they didn't read"), blame authors ("the writer made a mistake"), or blame vendors ("Microsoft changed the UI").<br><br>
+          <strong>Your STAR Story:</strong>
+          "In my previous role, a workflow automation failed because an external API endpoint deprecated a parameter overnight. Instead of saying 'the vendor didn't give warning,' I immediately took full ownership: I alerted the stakeholders with an ETA, patched the payload within two hours, and instituted an automated health-check script that tests endpoint status daily. If a student gets confused in a lab book, I don't assume the student is at fault—I assume the lab book wasn't clear enough, and I fix the step."
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title">
+            <span>🎯</span> 2. Obsession with Quality & Detail
+          </div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>Job Requirement:</strong> <em>"Obsessed with quality. Considerable attention to detail."</em><br><br>
+          <strong>Your Philosophy:</strong>
+          "In software development, a bug affects code; in IT career education, a broken lab book breaks a student's confidence. When testing a lab manual, I never test with assumed knowledge. I test as an absolute beginner on a freshly cloned, clean VM. I verify every checkbox, button label, CLI syntax character, and expected output screenshot. If Microsoft moves a button under a new sub-tab, I flag it immediately and supply the updated screenshot."
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title">
+            <span>🌱</span> 3. Coachability & Eagerness to Learn
+          </div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>Job Requirement:</strong> <em>"Eager to learn and grow; you do not just work for the pay cheque."</em><br><br>
+          <strong>Your Key Response:</strong>
+          "I graduated with honors and completed an intensive ITI post-grad program because I genuinely love learning. If your college introduces a new Red Hat Enterprise Linux or Citrix Virtual Apps lab module that I haven't configured in production yet, I don't hesitate. I spin up a test lab, read vendor documentation, replicate the lab from scratch, and master it within 48 hours. I embrace feedback because critique makes the lab books better."
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title">
+            <span>❤️</span> 4. Empathy for Career College Students
+          </div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <strong>Context of Private Career Colleges in Ontario:</strong>
+          Students in Canadian career colleges are frequently adult learners, immigrants, or career-changers investing their savings to pivot into IT. They are under enormous pressure.<br><br>
+          <strong>Your Approach:</strong>
+          "When a student reaches out in frustration saying 'Nothing works,' I first validate their feelings and de-escalate anxiety: <em>'I completely understand how frustrating this error is, let's look at it together.'</em> Then, instead of just giving them the answer, I guide them to observe the error message: <em>'Notice what the CLI says about DNS? What IP address did we assign to the adapter in Step 4?'</em> This builds their technical diagnostic confidence."
+        </div>
+      </div>
+    </div>
+
+    <!-- Questions to Ask Interviewer -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-primary">High Engagement</span>
+      </div>
+      <h2 class="card-title">Smart Questions to Ask the Interviewer</h2>
+      <div style="font-size:12.5px; display:flex; flex-direction:column; gap:8px; color:var(--text-muted); margin-top:8px;">
+        <div class="key-point">
+          <span class="key-point-icon">1.</span>
+          <span>"How frequently are your lab books audited when cloud platforms like Microsoft Azure or VMware release major portal UI changes?"</span>
+        </div>
+        <div class="key-point">
+          <span class="key-point-icon">2.</span>
+          <span>"What is the feedback loop between student support tickets and lab book revisions? Does the Lab Tester directly author the updates?"</span>
+        </div>
+        <div class="key-point">
+          <span class="key-point-icon">3.</span>
+          <span>"Do lab testers have access to dedicated vSphere clusters or Azure sandbox subscriptions for developing and verifying new exercises?"</span>
+        </div>
+        <div class="key-point">
+          <span class="key-point-icon">4.</span>
+          <span>"What does success look like in the first 60–90 days for someone stepping into this role on your 15-person team?"</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ================= TAB 4: FLASHCARDS ================= -->
+  <section class="tab-pane" id="tab-flash">
+    
+    <div class="flash-filters">
+      <button class="flash-chip active" data-cat="all">All (24)</button>
+      <button class="flash-chip" data-cat="ad">Active Directory</button>
+      <button class="flash-chip" data-cat="vmware">VMware</button>
+      <button class="flash-chip" data-cat="net">Cisco & Net</button>
+      <button class="flash-chip" data-cat="cloud">Azure & M365</button>
+      <button class="flash-chip" data-cat="linux">Linux & Citrix</button>
+      <button class="flash-chip" data-cat="qa">Lab Testing QA</button>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+      <span style="font-size:12px; color:var(--text-muted);" id="flashCardCount">Card 1 of 24</span>
+      <div style="display:flex; gap:6px;">
+        <button class="speaker-btn" id="fcAudioBtn">🎧 Read</button>
+        <button class="speaker-btn" id="fcShuffleBtn">🔀 Shuffle</button>
+      </div>
+    </div>
+
+    <div class="flashcard-box" id="flashCardWrapper">
+      <div class="flashcard-inner" id="flashCardInner">
+        <div class="flashcard-front">
+          <div>
+            <span class="badge badge-primary" id="fcCategory">Active Directory</span>
+            <h3 style="font-size:15.5px; font-weight:700; margin-top:14px; line-height:1.4;" id="fcQuestion">
+              What is the GPO processing order and how does inheritance work?
+            </h3>
+          </div>
+          <div class="card-hint">
+            <span id="fcHint">💡 Think: LSDOU</span>
+            <span>Tap card to flip ➔</span>
+          </div>
+        </div>
+        <div class="flashcard-back">
+          <div>
+            <span class="badge badge-success">Model Answer</span>
+            <div style="font-size:13px; margin-top:10px; line-height:1.6;" id="fcAnswer">
+              <strong>LSDOU:</strong> Local → Site → Domain → OU.<br>
+              Policies applied later overwrite earlier conflicting settings, unless a higher policy is set to <strong>"Enforced"</strong> (overrides all) or an OU has <strong>"Block Inheritance"</strong>.
+            </div>
+          </div>
+          <div class="card-hint">
+            <span>Tap to flip back</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flash-controls">
+      <button class="btn" id="fcPrev">⬅ Prev</button>
+      <button class="btn btn-primary" id="fcNext">Next ➡</button>
+    </div>
+  </section>
+
+  <!-- ================= TAB 5: LAB QA & SCENARIOS ================= -->
+  <section class="tab-pane" id="tab-scenarios">
+    
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-warning">Interactive Simulator</span>
+        <span class="badge badge-primary" id="scenarioCounter">Scenario 1 of 8</span>
+      </div>
+      <h2 class="card-title">Real-World Lab Troubleshooting Simulator</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:3px; margin-bottom:12px;">
+        Test your technical intuition on genuine student tickets and lab book flaws.
+      </p>
+
+      <div id="quizContainer">
+        <!-- Injected via JavaScript -->
+      </div>
+      
+      <div style="display:flex; gap:8px; margin-top:10px;">
+        <button class="btn" id="prevQuizBtn" style="flex:1;">⬅ Previous</button>
+        <button class="btn btn-primary" id="nextQuizBtn" style="flex:1;">Next Scenario ➡</button>
+      </div>
+    </div>
+
+    <!-- 4-Step Lab Testing Methodology -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-purple">Standard Operating Procedure</span>
+      </div>
+      <h2 class="card-title">The 4-Step Lab Testing Methodology</h2>
+      <div style="display:flex; flex-direction:column; gap:8px; font-size:12.5px; color:var(--text-muted); margin-top:8px;">
+        <div><strong>1. Clean Baseline Snapshot:</strong> Always revert VMs to initial clean state before testing. Never test on a VM that already has completed configurations.</div>
+        <div><strong>2. Literal Step Execution:</strong> Follow the lab book with an absolute beginner's mindset. Do not perform implicit steps in your head that aren't explicitly written on the page.</div>
+        <div><strong>3. UI & CLI Drift Audit:</strong> Check if Microsoft Azure, VMware, or Cisco updated navigation button labels, blade paths, or command syntax flags.</div>
+        <div><strong>4. Output & Screenshot Verification:</strong> Ensure every step includes expected output screenshots so students have instant visual confirmation of success.</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ================= TAB 6: MOCK LIVE INTERVIEW ================= -->
+  <section class="tab-pane" id="tab-mock">
+    
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-primary">Live Practice Mode</span>
+        <span class="badge badge-success" id="mockProgressLabel">Question 1</span>
+      </div>
+      <h2 class="card-title">Interactive Mock Interviewer</h2>
+      <p style="font-size:12px; color:var(--text-muted); margin-top:2px; margin-bottom:10px;">
+        Simulate real questions from the hiring manager. Use the audio voice, practice out loud, and check the model answer.
+      </p>
+
+      <div style="display:flex; gap:6px; margin-bottom:12px;">
+        <button class="btn btn-primary btn-sm" id="mockRandomBtn">🎲 Next Question</button>
+        <button class="btn btn-sm" id="mockSpeakBtn">🎧 Ask Aloud</button>
+      </div>
+
+      <div class="callout callout-info" style="margin-bottom:12px;">
+        <span class="badge badge-warning" id="mockCategory" style="margin-bottom:6px; display:inline-block;">CV & Transitions</span>
+        <h3 style="font-size:15px; font-weight:700; line-height:1.4;" id="mockQuestionText">
+          Loading question...
+        </h3>
+      </div>
+
+      <!-- Practice Timer Box -->
+      <div class="timer-card" style="margin-bottom:12px; padding:10px;">
+        <div style="font-size:11px; color:var(--text-muted); margin-bottom:2px;">Speech Countdown (60s)</div>
+        <div class="timer-display" id="mockTimerDisplay" style="font-size:26px;">01:00</div>
+        <div class="timer-controls" style="margin-top:4px;">
+          <button class="btn btn-sm btn-primary" id="mockTimerStart">▶ Start</button>
+          <button class="btn btn-sm" id="mockTimerReset">↺ Reset</button>
+        </div>
+      </div>
+
+      <!-- Model Answer Toggle -->
+      <button class="btn btn-sm" id="mockRevealBtn" style="width:100%; margin-bottom:10px;">👁️ Show Model Answer & Talking Points</button>
+      
+      <div id="mockAnswerBox" style="display:none; font-size:13px; line-height:1.6; padding:12px; background:var(--bg-surface-elevated); border:1px solid var(--border-active); border-radius:var(--radius-md); margin-bottom:12px;">
+        <!-- Injected via JS -->
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; padding-top:8px; border-top:1px solid var(--border-subtle);">
+        <span style="font-size:11.5px; color:var(--text-muted);">Self-Rating:</span>
+        <div style="display:flex; gap:6px;">
+          <button class="btn btn-sm" id="mockRateNeed" style="border-color:var(--accent-warning); color:var(--accent-warning);">Need Practice</button>
+          <button class="btn btn-sm btn-success" id="mockRateMaster">⭐ Nailed It</button>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ================= TAB 7: CHEAT SHEET & LOOKUP ================= -->
+  <section class="tab-pane" id="tab-cheat">
+
+    <!-- Interactive Port & Service Finder -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-primary">Instant Lookup</span>
+      </div>
+      <h2 class="card-title">Port & Protocol Diagnostic Finder</h2>
+      <input type="text" class="search-box" id="portSearch" placeholder="Type port (e.g. 53, 3389, 445) or name (DNS, RDP)..." style="margin-top:8px; margin-bottom:8px;">
+      
+      <div id="portResult" style="font-size:12.5px; color:var(--text-muted); line-height:1.5;">
+        Search above to find protocol, port number, transport layer, and primary troubleshooting tips.
+      </div>
+    </div>
+
+    <!-- Essential Ports Table -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-success">Must Memorize</span>
+      </div>
+      <h2 class="card-title">Core IT Ports Cheat Sheet</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Service</th><th>Port</th><th>Protocol</th><th>Lab Role</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>DNS</strong></td><td>53</td><td>UDP/TCP</td><td>Domain name resolution / AD SRV</td></tr>
+            <tr><td><strong>DHCP</strong></td><td>67 (S) / 68 (C)</td><td>UDP</td><td>DORA dynamic IP lease</td></tr>
+            <tr><td><strong>Kerberos</strong></td><td>88</td><td>TCP/UDP</td><td>Active Directory authentication</td></tr>
+            <tr><td><strong>HTTP / HTTPS</strong></td><td>80 / 443</td><td>TCP</td><td>Web & Azure portal SSL/TLS</td></tr>
+            <tr><td><strong>LDAP / LDAPS</strong></td><td>389 / 636</td><td>TCP</td><td>Active Directory queries</td></tr>
+            <tr><td><strong>SMB</strong></td><td>445</td><td>TCP</td><td>Windows file sharing / SYSVOL</td></tr>
+            <tr><td><strong>RDP</strong></td><td>3389</td><td>TCP/UDP</td><td>Remote Desktop VM access</td></tr>
+            <tr><td><strong>SSH</strong></td><td>22</td><td>TCP</td><td>Linux secure remote shell</td></tr>
+            <tr><td><strong>Global Catalog</strong></td><td>3268 / 3269</td><td>TCP</td><td>Multi-domain forest search</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Rapid Diagnostic Command Matrix -->
+    <div class="card">
+      <div class="card-header">
+        <span class="badge badge-warning">CLI Power Matrix</span>
+      </div>
+      <h2 class="card-title">Essential Command Line Tooling</h2>
+      
+      <div class="accordion open">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🪟</span> Windows & Active Directory (PowerShell)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="code-block">ipconfig /all             # Full network adapter config
+ipconfig /flushdns        # Purge local DNS resolver cache
+ipconfig /release && renew # Cycle DHCP address lease
+Test-NetConnection -Port 3389 -ComputerName 10.0.0.5 # Test port open
+Get-ADUser -Identity "jdoe" -Properties *            # Query user attributes
+Unlock-ADAccount -Identity "jdoe"                    # Unlock user account
+Get-Service -Name "NTDS"                             # Check AD DS service</div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🐧</span> Linux (RHEL / CentOS / Ubuntu)</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="code-block">systemctl status [service]   # Verify active/running state
+journalctl -u [service] -e   # Inspect service crash logs
+netstat -tulpn               # List all listening ports & PIDs
+ss -tulpn                    # Modern socket statistics
+tail -n 50 /var/log/messages # View recent kernel/system events
+df -h                        # Check disk filesystem usage
+chmod 755 [dir]              # Set directory permissions</div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="accordion-title"><span>🌐</span> Cisco IOS Switch & Router Commands</div>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <div class="code-block">show ip interface brief      # Fast overview of IP & port status
+show vlan brief              # Verify VLAN assignments
+show interfaces trunk        # Inspect 802.1Q trunking status
+show ip route                # Inspect routing table & default gateway
+ping [destination_ip]        # Layer 3 reachability test</div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<!-- BOTTOM NAVIGATION BAR (MOBILE OPTIMIZED) -->
+<nav class="bottom-nav">
+  <button class="bnav-item active" data-tab="tab-academy">
+    <span class="bnav-icon">📚</span>
+    <span>Academy</span>
+  </button>
+  <button class="bnav-item" data-tab="tab-pitch">
+    <span class="bnav-icon">🎯</span>
+    <span>Pitch</span>
+  </button>
+  <button class="bnav-item" data-tab="tab-tech">
+    <span class="bnav-icon">💻</span>
+    <span>Tech</span>
+  </button>
+  <button class="bnav-item" data-tab="tab-flash">
+    <span class="bnav-icon">⚡</span>
+    <span>Cards</span>
+  </button>
+  <button class="bnav-item" data-tab="tab-scenarios">
+    <span class="bnav-icon">🛠️</span>
+    <span>Quiz</span>
+  </button>
+  <button class="bnav-item" data-tab="tab-mock">
+    <span class="bnav-icon">🎙️</span>
+    <span>Mock</span>
+  </button>
+  <button class="bnav-item" data-tab="tab-cheat">
+    <span class="bnav-icon">📑</span>
+    <span>Cheat</span>
+  </button>
+</nav>
+
+<script>
+/* =========================================================================
+   APPLICATION DATA & LOGIC ENGINE
+   ========================================================================= */
+
+// 1. Comprehensive Flashcard Database (24 Cards)
+const flashcardsData = [
+  // Active Directory
+  {
+    category: "Active Directory",
+    catKey: "ad",
+    question: "What is the GPO processing order and how does inheritance work?",
+    hint: "💡 Think: LSDOU",
+    answer: "<strong>LSDOU:</strong> Local → Site → Domain → OU.<br>Policies applied later overwrite earlier conflicting settings, unless a higher policy has <strong>'Enforced'</strong> enabled or an OU has <strong>'Block Inheritance'</strong> configured."
+  },
+  {
+    category: "Active Directory",
+    catKey: "ad",
+    question: "Name the 5 FSMO roles and differentiate Forest vs Domain roles.",
+    hint: "💡 2 Forest, 3 Domain",
+    answer: "<strong>Forest-Wide (1 per Forest):</strong> Schema Master, Domain Naming Master.<br><strong>Domain-Wide (1 per Domain):</strong> PDC Emulator (time & password sync), RID Master (allocates unique SID pools), Infrastructure Master (cross-domain object references)."
+  },
+  {
+    category: "Active Directory",
+    catKey: "ad",
+    question: "Why does Active Directory strictly require DNS and what are SRV records?",
+    hint: "💡 Locating domain controllers",
+    answer: "AD uses DNS as its primary locator mechanism. <strong>SRV (Service) records</strong> register which server runs LDAP, Kerberos, and Global Catalog on specific ports (e.g. <code>_ldap._tcp.dc._msdcs.domain.com</code>), enabling clients to locate Domain Controllers."
+  },
+  {
+    category: "Active Directory",
+    catKey: "ad",
+    question: "What is the difference between Security and Distribution Groups in AD?",
+    hint: "💡 Permissions vs Email",
+    answer: "<strong>Security Groups:</strong> Can be assigned permissions to resources (NTFS files, printers, registry) and can also be used as email distribution lists.<br><strong>Distribution Groups:</strong> Solely for email broadcasting via Exchange Online/Outlook; cannot be assigned ACL resource permissions."
+  },
+
+  // VMware
+  {
+    category: "VMware vSphere",
+    catKey: "vmware",
+    question: "Why is a VM Snapshot NOT considered a backup?",
+    hint: "💡 Delta disks & dependency",
+    answer: "A snapshot freezes the base <code>.vmdk</code> disk and logs new writes to a delta file. If the base disk corrupts, the snapshot is useless. Snapshots degrade storage performance, slow down VM execution, and can fill datastores."
+  },
+  {
+    category: "VMware vSphere",
+    catKey: "vmware",
+    question: "What is the difference between a Type 1 and Type 2 Hypervisor?",
+    hint: "💡 Bare-metal vs Hosted",
+    answer: "<strong>Type 1 (Bare-Metal):</strong> Runs directly on physical hardware without a host OS (e.g., VMware ESXi, Hyper-V). Enterprise standard.<br><strong>Type 2 (Hosted):</strong> Runs as a software app on top of a host OS (e.g., VMware Workstation Pro, VirtualBox)."
+  },
+  {
+    category: "VMware vSphere",
+    catKey: "vmware",
+    question: "What is the difference between a Standard vSwitch and a Distributed vSwitch?",
+    hint: "💡 Single host vs Datacenter cluster",
+    answer: "A <strong>Standard Switch (VSS)</strong> is configured and managed locally on an individual ESXi host. A <strong>Distributed Switch (VDS)</strong> acts as a unified centralized switch configured at the vCenter datacenter level across all hosts."
+  },
+  {
+    category: "VMware vSphere",
+    catKey: "vmware",
+    question: "What are VMware Tools and why must students install them in labs?",
+    hint: "💡 Drivers & synchronization",
+    answer: "VMware Tools provides specialized virtual drivers (VMXNET3 NIC, PVSCSI storage), enables smooth mouse pointer movement without ungrabbing, supports guest time synchronization with the host, and allows graceful guest OS shutdown from vCenter."
+  },
+
+  // Cisco & Networking
+  {
+    category: "Cisco & Net",
+    catKey: "net",
+    question: "Explain the DHCP DORA process and what happens if it fails.",
+    hint: "💡 Discover, Offer, Request, Ack",
+    answer: "<strong>DORA (UDP 67/68):</strong> Discover (broadcast) → Offer (unicast/broadcast) → Request (client accepts) → Acknowledge (server locks lease).<br>If no server responds, Windows assigns an <strong>APIPA</strong> IP (169.254.x.x), restricting traffic to the local subnet only."
+  },
+  {
+    category: "Cisco & Net",
+    catKey: "net",
+    question: "What is the function of a VLAN and why is an 802.1Q trunk needed?",
+    hint: "💡 Broadcast domain isolation",
+    answer: "A <strong>VLAN</strong> partitions a single physical switch into isolated Layer 2 broadcast domains. An <strong>802.1Q trunk</strong> enables multiple VLAN tags to traverse a single physical link connecting switches or routers."
+  },
+  {
+    category: "Cisco & Net",
+    catKey: "net",
+    question: "Explain the TCP 3-Way Handshake.",
+    hint: "💡 SYN, SYN-ACK, ACK",
+    answer: "1. <strong>SYN:</strong> Client sends Synchronize packet with initial sequence number.<br>2. <strong>SYN-ACK:</strong> Server acknowledges and responds with its sequence number.<br>3. <strong>ACK:</strong> Client sends final acknowledgment. Reliable connection established."
+  },
+  {
+    category: "Cisco & Net",
+    catKey: "net",
+    question: "How many usable IP addresses exist in a /28 subnet?",
+    hint: "💡 2^(32 - 28) - 2",
+    answer: "<strong>14 usable hosts.</strong> Total IPs = 2^(32 - 28) = 16. Subtract 2 for the Network ID and Broadcast address, leaving 14 usable addresses. Subnet mask is <code>255.255.255.240</code>."
+  },
+
+  // Azure & Cloud
+  {
+    category: "Azure & Cloud",
+    catKey: "cloud",
+    question: "How does Microsoft Entra ID (Azure AD) differ from On-Premises AD?",
+    hint: "💡 Flat web auth vs hierarchical Kerberos",
+    answer: "On-Premises AD uses hierarchical OUs, Kerberos/NTLM, LDAP, and GPOs. Entra ID is a flat, cloud-native identity service using modern web protocols (OAuth 2.0, SAML, REST APIs) governed by <strong>Conditional Access and MFA</strong>."
+  },
+  {
+    category: "Azure & Cloud",
+    catKey: "cloud",
+    question: "Differentiate IaaS, PaaS, and SaaS in cloud computing.",
+    hint: "💡 Shared responsibility layers",
+    answer: "<strong>IaaS (VMs, VNets):</strong> You manage OS, runtime, and apps.<br><strong>PaaS (Azure SQL, App Service):</strong> You manage code/data; provider manages OS & scaling.<br><strong>SaaS (M365, Teams):</strong> Provider manages everything; you consume the application."
+  },
+  {
+    category: "Azure & Cloud",
+    catKey: "cloud",
+    question: "What is an Azure Network Security Group (NSG) and how are rules prioritized?",
+    hint: "💡 Lower number = higher priority",
+    answer: "An NSG filters network traffic to Azure VM NICs or subnets using 5-tuple rules (Source, Dest, Port, Protocol, Action). Rules are evaluated in priority order from <strong>100 to 4096 (lower numbers take precedence)</strong>; once a match is found, processing stops."
+  },
+
+  // Microsoft 365
+  {
+    category: "Microsoft 365",
+    catKey: "cloud",
+    question: "Does an Exchange Online Shared Mailbox require a paid user license?",
+    hint: "💡 Free under 50 GB",
+    answer: "<strong>No.</strong> A shared mailbox does NOT require a license if its mailbox size remains under 50 GB. If it requires more than 50 GB or an Online Archive, an Exchange Online Plan 2 license must be assigned."
+  },
+  {
+    category: "Microsoft 365",
+    catKey: "cloud",
+    question: "What is the difference between 'Send As' and 'Send on Behalf' in Exchange?",
+    hint: "💡 Header transparency",
+    answer: "<strong>Send As:</strong> The recipient sees the email as originating directly from the shared address.<br><strong>Send on Behalf:</strong> The recipient's email header explicitly shows <em>'User on behalf of Support'</em>."
+  },
+
+  // Linux & Red Hat
+  {
+    category: "Red Hat Linux",
+    catKey: "linux",
+    question: "What do file permissions '755' and '644' mean in Linux?",
+    hint: "💡 r=4, w=2, x=1",
+    answer: "<strong>755 (rwxr-xr-x):</strong> Owner has full read/write/execute (7); Group has read/execute (5); Others have read/execute (5). Standard for executable scripts & web directories.<br><strong>644 (rw-r--r--):</strong> Owner has read/write (6); Group/Others read-only (4). Standard for config files."
+  },
+  {
+    category: "Red Hat Linux",
+    catKey: "linux",
+    question: "How do you check service status and view crash logs in Red Hat (RHEL)?",
+    hint: "💡 systemctl & journalctl",
+    answer: "Check status: <code>systemctl status servicename</code>.<br>View systemd error logs: <code>journalctl -u servicename -xe</code>.<br>Inspect general system logs: <code>tail -f /var/log/messages</code>."
+  },
+
+  // Citrix
+  {
+    category: "Citrix VDI",
+    catKey: "linux",
+    question: "What are StoreFront and the VDA in a Citrix environment?",
+    hint: "💡 Web portal & Desktop agent",
+    answer: "<strong>Citrix StoreFront:</strong> The enterprise authentication portal where users log in and view published apps/desktops.<br><strong>VDA (Virtual Delivery Agent):</strong> The software agent installed on target VMs that registers with Delivery Controllers and brokers HDX/ICA user connections."
+  },
+
+  // Lab QA & Methodology
+  {
+    category: "Lab Testing QA",
+    catKey: "qa",
+    question: "What is the #1 golden rule when testing a student lab exercise?",
+    hint: "💡 Clean VM & beginner mindset",
+    answer: "<strong>Always test on a freshly reverted baseline VM with an absolute beginner's mindset.</strong> Never assume prior knowledge, follow every instruction literally, and verify all screenshots match current vendor portal UIs."
+  },
+  {
+    category: "Lab Testing QA",
+    catKey: "qa",
+    question: "How do you document a lab book defect for curriculum writers?",
+    hint: "💡 Reproducible bug report",
+    answer: "1. Exact Lab & Step number.<br>2. Clear description of discrepancy (e.g. 'Button renamed from X to Y').<br>3. High-resolution screenshot of current UI with red callout box.<br>4. Proposed revised text to replace the existing step."
+  },
+  {
+    category: "Lab Testing QA",
+    catKey: "qa",
+    question: "How do you respond to a student claiming 'Step 12 is broken, nothing works'?",
+    hint: "💡 Empathy + diagnostic inquiry",
+    answer: "1. <strong>Empathize & De-escalate:</strong> 'I understand this is frustrating, let's solve it together.'<br>2. <strong>Gather Data:</strong> Request screenshot of error and current VM IP config.<br>3. <strong>Guide Discovery:</strong> Help them see the root cause rather than doing it for them."
+  },
+  {
+    category: "Lab Testing QA",
+    catKey: "qa",
+    question: "Why are high-resolution screenshots with visual callouts crucial in lab manuals?",
+    hint: "💡 Visual anchor for adult learners",
+    answer: "Students have diverse technical backgrounds. Text instructions can be misread, but an annotated screenshot showing the exact button location, field values, and expected confirmation dialog removes all ambiguity."
+  }
+];
+
+// 2. Real-World Troubleshooting Scenarios (8 Scenarios)
+const quizScenarios = [
+  {
+    id: 1,
+    title: "Scenario 1: Domain Join Failure ('Network Path Not Found')",
+    scenario: "A student doing Lab 3 ('Joining Windows 11 to Corp.local') gets the error: 'An Active Directory Domain Controller for the domain corp.local could not be contacted.' Both VMs are running in VMware Workstation. What is the very first diagnostic step you walk them through?",
+    options: [
+      { text: "A. Tell the student to reinstall Windows 11 on the VM.", correct: false },
+      { text: "B. Check the client VM's IPv4 DNS settings to verify its primary DNS is set to the Domain Controller's static IP.", correct: true },
+      { text: "C. Disable the Windows Firewall completely on the Domain Controller.", correct: false },
+      { text: "D. Tell them to delete the computer account from Active Directory Users and Computers.", correct: false }
+    ],
+    explanation: "<strong>Correct: B.</strong> Over 90% of domain join failures are DNS misconfigurations. A client machine must use the Domain Controller as its DNS server to resolve AD SRV records (e.g. <code>_ldap._tcp.dc._msdcs.corp.local</code>). If DNS is set to 8.8.8.8 or DHCP router IP, domain join will fail."
+  },
+  {
+    id: 2,
+    title: "Scenario 2: Cloud Lab UI Drift in Microsoft Azure",
+    scenario: "While testing Lab 4 ('Deploying an Azure Virtual Network and NSG'), you notice Microsoft updated the Azure Portal UI: the 'Inbound security rules' button has been moved into a new sub-blade named 'Network settings'. What is your responsibility as a Lab Tester?",
+    options: [
+      { text: "A. Leave it as is because students should learn to navigate interface updates independently.", correct: false },
+      { text: "B. Capture an updated high-resolution annotated screenshot, write the revised breadcrumb navigation path, and submit a pull request/changelog to the lab author.", correct: true },
+      { text: "C. Delete the Azure lab and replace it with an on-premises Hyper-V lab.", correct: false },
+      { text: "D. Add an alert saying Azure is broken today.", correct: false }
+    ],
+    explanation: "<strong>Correct: B.</strong> A Lab Tester's job is to test and innovate lab books. UI drift is common in public clouds. Updating screenshots and navigation prevents dozens of student panic tickets and maintains curriculum excellence."
+  },
+  {
+    id: 3,
+    title: "Scenario 3: APIPA IP (169.254.x.x) on Client VM",
+    scenario: "In a VMware networking lab, a student's Windows 10 VM cannot reach the internal file share. When running 'ipconfig', the IP shows '169.254.45.112'. What does this indicate and what is the root cause?",
+    options: [
+      { text: "A. The machine successfully obtained a public IP from the ISP.", correct: false },
+      { text: "B. The client failed to receive a response from a DHCP server (APIPA assigned), likely due to a stopped DHCP service or incorrect vSwitch port group.", correct: true },
+      { text: "C. The network card is physically damaged and must be replaced.", correct: false },
+      { text: "D. The Domain Controller locked the computer account.", correct: false }
+    ],
+    explanation: "<strong>Correct: B.</strong> The 169.254.0.0/16 range is APIPA (Automatic Private IP Addressing). It means the VM broadcasted DHCP Discover packets, but no DHCP server responded. Root causes include stopped DHCP service or the VMs being connected to different virtual switches."
+  },
+  {
+    id: 4,
+    title: "Scenario 4: PowerShell Script 'Execution Policy' Error",
+    scenario: "During an automated user provisioning lab, a student executes a script 'create_users.ps1' and receives: 'File cannot be loaded because running scripts is disabled on this system.' How do you guide them to resolve this properly?",
+    options: [
+      { text: "A. Tell them PowerShell is broken and they must manually type 100 users in GUI.", correct: false },
+      { text: "B. Run PowerShell as Administrator and execute 'Set-ExecutionPolicy RemoteSigned -Scope CurrentUser', then rerun the script.", correct: true },
+      { text: "C. Format the virtual machine hard drive.", correct: false },
+      { text: "D. Change the file extension from .ps1 to .bat.", correct: false }
+    ],
+    explanation: "<strong>Correct: B.</strong> Windows client systems default to a 'Restricted' PowerShell Execution Policy. Setting it to <code>RemoteSigned</code> allows locally created scripts to run while requiring downloaded scripts to be signed by a trusted publisher."
+  },
+  {
+    id: 5,
+    title: "Scenario 5: Red Hat Linux Web Directory Permission Denied",
+    scenario: "In a Red Hat (RHEL) web server lab, a student places 'index.html' into '/var/www/html', but the browser gives '403 Forbidden'. Running 'ls -l /var/www/html/index.html' shows '-rw------- 1 root root'. What is the fix?",
+    options: [
+      { text: "A. Run 'chmod 644 /var/www/html/index.html' so the web server service can read the file.", correct: true },
+      { text: "B. Delete the Apache service and reinstall Linux.", correct: false },
+      { text: "C. Run 'chmod 000' to secure the file.", correct: false },
+      { text: "D. Reboot the computer 3 times.", correct: false }
+    ],
+    explanation: "<strong>Correct: A.</strong> Permissions <code>-rw-------</code> (600) mean only root can read and write the file. The Apache daemon (running as user 'apache') has no read rights, resulting in 403 Forbidden. Changing permissions to 644 grants read access to all users."
+  },
+  {
+    id: 6,
+    title: "Scenario 6: Cisco VLAN Inter-Communication Failure",
+    scenario: "In a Cisco switching lab, PC1 is on VLAN 10 (IP 192.168.10.5) and PC2 is on VLAN 20 (IP 192.168.20.5), plugged into the same switch. A student complains that ping between them fails. What fundamental concept must you explain?",
+    options: [
+      { text: "A. The switch is defective and needs a firmware upgrade.", correct: false },
+      { text: "B. VLANs create separate Layer 2 broadcast domains; traffic between different VLANs requires a Layer 3 device (router or L3 switch) to route packets.", correct: true },
+      { text: "C. VLAN 20 is always disabled by default on Cisco switches.", correct: false },
+      { text: "D. You can only ping machines that have the exact same IP address.", correct: false }
+    ],
+    explanation: "<strong>Correct: B.</strong> VLANs segment networks at Layer 2. By design, devices in different VLANs cannot communicate directly at Layer 2 even if connected to the same physical switch. A Layer 3 router (Router-on-a-Stick) or Layer 3 switch is required."
+  },
+  {
+    id: 7,
+    title: "Scenario 7: Azure Inbound HTTP Traffic Blocked",
+    scenario: "A student deploys an IIS web server VM in Azure. Inside the VM, browsing 'http://localhost' works fine. However, browsing to the Azure VM's Public IP from home fails with a connection timeout. What is missing in Azure?",
+    options: [
+      { text: "A. Microsoft Azure does not allow websites to be hosted on VMs.", correct: false },
+      { text: "B. An Inbound Security Rule allowing TCP Port 80 is missing in the Network Security Group (NSG) attached to the VM subnet/NIC.", correct: true },
+      { text: "C. The student's home computer must join the Azure Active Directory tenant.", correct: false },
+      { text: "D. The VM must be deleted and re-created in another continent.", correct: false }
+    ],
+    explanation: "<strong>Correct: B.</strong> Azure NSGs block all inbound internet traffic by default, except for rules explicitly created. An inbound NSG security rule permitting Destination Port 80 (HTTP) from source 'Any' is required to reach the web server."
+  },
+  {
+    id: 8,
+    title: "Scenario 8: Frustrated Student & Lab Book Discrepancy",
+    scenario: "A student messages you during remote lab hours: 'Nothing is working, Step 18 has an error, this college is terrible and I want a refund!' What is your immediate course of action?",
+    options: [
+      { text: "A. Tell the student that being rude will get them expelled.", correct: false },
+      { text: "B. Validate their feelings calmly, ask for a screenshot of the step and terminal error, identify whether it's a student error or book drift, guide them through the fix, and update the book if needed.", correct: true },
+      { text: "C. Forward the email to the college president and ignore the ticket.", correct: false },
+      { text: "D. Remotely take over the machine and finish the entire lab without explaining anything.", correct: false }
+    ],
+    explanation: "<strong>Correct: B.</strong> Empathy, patience, and professional composure are mandatory in a Private Career College. De-escalating customer frustration while systematically diagnosing the issue turns an anxious student into a confident graduate."
+  }
+];
+
+// 3. Mock Interview Question Bank (12 High-Yield Questions)
+const mockInterviewBank = [
+  {
+    category: "CV & Background",
+    question: "With a degree in Computer Engineering and full-stack web development experience, why are you applying for an IT Lab Tester and Support role?",
+    points: [
+      "Explain your passion for systems infrastructure, technical training, and educational technology over isolated code maintenance.",
+      "Highlight that Computer Engineering covers networks, operating systems, and access controls—the exact core of enterprise labs.",
+      "Show how a developer/engineering mindset makes you a superior tester: precision, automation of test scripts, and root-cause debugging."
+    ],
+    answer: "While I have strong development and scripting capabilities, my true career enthusiasm is in systems infrastructure, technical training, and educational enablement. In software development, you often work in an isolated silo. As an IT Lab Tester and Support Specialist, I work across the complete technology stack—Active Directory, VMware, Cisco networking, Azure, and Linux—while directly enabling students to transform their careers. Having an engineering background makes me a far more meticulous tester: I understand the architecture beneath the GUI and can automate sanity checks using PowerShell or Bash."
+  },
+  {
+    category: "Remote Work & Reliability",
+    question: "This position is for our college in Mississauga, Ontario, but you are based in Cairo. How will you manage time zones and remote collaboration?",
+    points: [
+      "Explain that Cairo to Mississauga (EST) has a 6-7 hour difference, perfectly placing your 2:00 PM - 10:00 PM shift in sync with 8:00 AM - 4:00 PM EST.",
+      "Detail your quiet home office, high-speed fiber internet + 4G LTE backup hotspot, and UPS power backup.",
+      "Cite your 2+ years of successful remote contract work across Cyprus and Egypt with proven SLA response."
+    ],
+    answer: "Ontario operates on Eastern Standard Time. A 6-hour difference means when I work from 2:00 PM to 10:00 PM in Cairo, I am 100% synchronized with Canadian business hours (8:00 AM to 4:00 PM EST) while having morning quiet time to test lab books before students even log in. Over the last two years, I have worked entirely in remote environments. I have a dedicated home office, 100+ Mbps fiber internet with automatic cellular failover, a UPS battery backup, and a habit of proactive daily communication and rapid ticket resolution."
+  },
+  {
+    category: "Technical: Active Directory",
+    question: "A student is unable to join a Windows 11 VM to our test domain 'college.local'. How would you diagnose and resolve this?",
+    points: [
+      "Identify DNS as the primary suspect: client VM must point to Domain Controller IP.",
+      "Verify both VMs are on the same virtual network/vSwitch.",
+      "Check ping and test SRV record resolution using 'nslookup' or 'Test-NetConnection'.",
+      "Check that system time on client and DC is synchronized (Kerberos max clock skew is 5 min)."
+    ],
+    answer: "The vast majority of domain join failures are DNS misconfigurations. First, I check the client VM's network adapter settings to ensure its Primary DNS server is explicitly set to the Domain Controller's static IP address, not 8.8.8.8 or a home router. Second, I verify both VMs are connected to the same virtual switch/port group in VMware. Third, I test name resolution using 'nslookup college.local'. Finally, I confirm the system clock on both VMs is synchronized, as Kerberos authentication fails if the clock skew exceeds 5 minutes."
+  },
+  {
+    category: "Technical: VMware vSphere",
+    question: "Can you explain why a student should never use a snapshot as a permanent backup, and how snapshots affect storage?",
+    points: [
+      "Explain delta disks: writes are redirected away from the base .vmdk.",
+      "Parent dependency: if base disk is deleted/damaged, all snapshots fail.",
+      "Performance penalty: delta files grow rapidly, causing high disk I/O latency and datastore exhaustion."
+    ],
+    answer: "A snapshot is strictly a temporary point-in-time state capture, not an independent backup. When a snapshot is taken, the base virtual disk is locked to read-only, and all new writes are redirected to a delta file. If the base disk is corrupted or deleted, the snapshot cannot restore the VM. Furthermore, delta disks grow continuously with every change, consuming datastore space and creating severe read latency. In our labs, snapshots are ideal for reverting a test VM to a clean baseline, but should never be retained long-term."
+  },
+  {
+    category: "Culture & Values",
+    question: "Our college emphasizes taking full accountability for both actions and inactions. Can you give an example of when you took ownership of a mistake or setback?",
+    points: [
+      "Use STAR format: Situation, Task, Action, Result.",
+      "No finger pointing or making excuses.",
+      "Highlight rapid remediation, communication with stakeholders, and establishing a preventive checklist."
+    ],
+    answer: "In a previous integration project, an automated sync script failed after a deployment because I had not accounted for an unannounced vendor parameter change. Instead of blaming the vendor, I immediately notified the team, provided a 2-hour resolution ETA, refactored the payload, and successfully restored synchronization. I then implemented an automated synthetic monitor to alert us to endpoint changes before deployment. Radical accountability means when something fails under my watch, I own the fix and build safeguards so it never recurs."
+  },
+  {
+    category: "Lab QA & Support",
+    question: "What is your step-by-step methodology when reviewing a 30-page student lab manual for the first time?",
+    points: [
+      "Start with a freshly reverted clean VM snapshot.",
+      "Execute every step literally without assuming unwritten prerequisites.",
+      "Verify every GUI button path, CLI flag, and expected screenshot against current platform versions.",
+      "Document discrepancies with exact step numbers, updated screenshots, and proposed text edits."
+    ],
+    answer: "I follow a strict 4-step protocol: First, I revert the VM to a verified clean baseline snapshot to ensure no residual configurations taint the test. Second, I adopt an absolute beginner's mindset—executing only what is printed on the page without skipping implicit steps. Third, I audit for UI drift: checking if Azure, VMware, or Windows Server renamed buttons or relocated sub-menus. Finally, I verify that every major milestone includes an explicit confirmation screenshot so students know they succeeded. I log any discrepancies with step numbers and revised screenshots for the author."
+  }
+];
+
+// 4. Ports Lookup Dictionary
+const portsDictionary = [
+  { port: "53", name: "DNS", proto: "UDP/TCP", desc: "Domain Name System. Resolves hostnames to IPs and locates AD Domain Controllers via SRV records." },
+  { port: "67", name: "DHCP Server", proto: "UDP", desc: "Dynamic Host Configuration Protocol server port. Receives Discover and Request broadcasts from clients." },
+  { port: "68", name: "DHCP Client", proto: "UDP", desc: "DHCP client port. Receives Offer and Acknowledgment unicast/broadcast packets from the server." },
+  { port: "88", name: "Kerberos", proto: "TCP/UDP", desc: "Primary authentication protocol for Active Directory domain logons and ticket granting." },
+  { port: "80", name: "HTTP", proto: "TCP", desc: "Hypertext Transfer Protocol for unencrypted web traffic." },
+  { port: "443", name: "HTTPS", proto: "TCP", desc: "Secure HTTP with SSL/TLS encryption. Used for Azure portal, M365 Admin, and web services." },
+  { port: "389", name: "LDAP", proto: "TCP/UDP", desc: "Lightweight Directory Access Protocol. Used to query and modify Active Directory objects." },
+  { port: "636", name: "LDAPS", proto: "TCP", desc: "Secure LDAP over SSL/TLS." },
+  { port: "445", name: "SMB", proto: "TCP", desc: "Server Message Block. Used for Windows file sharing, printer sharing, and SYSVOL replication." },
+  { port: "3389", name: "RDP", proto: "TCP/UDP", desc: "Remote Desktop Protocol. Used to access Windows Server and client VM graphical desktops." },
+  { port: "22", name: "SSH / SFTP", proto: "TCP", desc: "Secure Shell for encrypted remote terminal access to Linux/Unix systems and switches." },
+  { port: "3268", name: "Global Catalog", proto: "TCP", desc: "AD Global Catalog query port for forest-wide searches across multiple domains." }
+];
+
+/* =========================================================================
+   CONTROLLER & UI INTERACTION ENGINE
+   ========================================================================= */
+
+let currentFlashIndex = 0;
+let filteredFlashcards = [...flashcardsData];
+let currentQuizIndex = 0;
+let currentMockIndex = 0;
+let pitchTimerInterval = null;
+let pitchSecondsRemaining = 90;
+let mockTimerInterval = null;
+let mockSecondsRemaining = 60;
+
+// Speech Synthesis Helper
+function speakText(text) {
+  if (!('speechSynthesis' in window)) {
+    alert("Speech Synthesis is not supported in this browser.");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  
+  // Strip HTML tags for clean audio
+  const clean = text.replace(/<[^>]*>?/gm, ' ');
+  const utterance = new SpeechSynthesisUtterance(clean);
+  utterance.rate = 0.95;
+  utterance.pitch = 1.0;
+  
+  const stopBtn = document.getElementById('speakStopBtn');
+  if (stopBtn) stopBtn.style.display = 'inline-flex';
+
+  utterance.onend = () => {
+    if (stopBtn) stopBtn.style.display = 'none';
+  };
+  utterance.onerror = () => {
+    if (stopBtn) stopBtn.style.display = 'none';
+  };
+
+  window.speechSynthesis.speak(utterance);
+}
+
+// Global Tab Switching
+function initTabs() {
+  const pills = document.querySelectorAll('.nav-pill, .bnav-item');
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const targetTab = pill.getAttribute('data-tab');
+
+      document.querySelectorAll('.nav-pill').forEach(p => {
+        p.classList.toggle('active', p.getAttribute('data-tab') === targetTab);
+      });
+      document.querySelectorAll('.bnav-item').forEach(p => {
+        p.classList.toggle('active', p.getAttribute('data-tab') === targetTab);
+      });
+      document.querySelectorAll('.tab-pane').forEach(pane => {
+        pane.classList.toggle('active', pane.id === targetTab);
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+}
+
+// Accordion Toggles
+function initAccordions() {
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const parent = header.parentElement;
+      parent.classList.toggle('open');
+    });
+  });
+}
+
+// 90s Pitch Timer
+function initPitchTimer() {
+  const display = document.getElementById('pitchTimerDisplay');
+  const startBtn = document.getElementById('timerStartBtn');
+  const resetBtn = document.getElementById('timerResetBtn');
+  const speakBtn = document.getElementById('pitchSpeakBtn');
+  const copyBtn = document.getElementById('copyPitchBtn');
+
+  function updateDisplay() {
+    const mins = Math.floor(pitchSecondsRemaining / 60);
+    const secs = pitchSecondsRemaining % 60;
+    display.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    if (pitchSecondsRemaining <= 15) {
+      display.style.color = "var(--accent-danger)";
+    } else {
+      display.style.color = "var(--accent)";
+    }
+  }
+
+  startBtn.addEventListener('click', () => {
+    if (pitchTimerInterval) {
+      // Pause
+      clearInterval(pitchTimerInterval);
+      pitchTimerInterval = null;
+      startBtn.textContent = '▶ Resume';
+    } else {
+      // Start
+      startBtn.textContent = '⏸ Pause';
+      pitchTimerInterval = setInterval(() => {
+        if (pitchSecondsRemaining > 0) {
+          pitchSecondsRemaining--;
+          updateDisplay();
+        } else {
+          clearInterval(pitchTimerInterval);
+          pitchTimerInterval = null;
+          startBtn.textContent = '▶ Start Timer';
+          alert("Time's up! Great rehearsal.");
+        }
+      }, 1000);
+    }
+  });
+
+  resetBtn.addEventListener('click', () => {
+    clearInterval(pitchTimerInterval);
+    pitchTimerInterval = null;
+    pitchSecondsRemaining = 90;
+    startBtn.textContent = '▶ Start Timer';
+    updateDisplay();
+  });
+
+  speakBtn.addEventListener('click', () => {
+    const script = document.getElementById('pitchScriptText').innerText;
+    speakText(script);
+  });
+
+  copyBtn.addEventListener('click', () => {
+    const text = document.getElementById('pitchScriptText').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      copyBtn.textContent = '✅ Copied!';
+      setTimeout(() => { copyBtn.textContent = '📋 Copy'; }, 2000);
+    });
+  });
+}
+
+// Flashcard Engine
+function renderFlashcard() {
+  if (filteredFlashcards.length === 0) return;
+  const card = filteredFlashcards[currentFlashIndex];
+  document.getElementById('fcCategory').textContent = card.category;
+  document.getElementById('fcQuestion').textContent = card.question;
+  document.getElementById('fcAnswer').innerHTML = card.answer;
+  document.getElementById('fcHint').textContent = card.hint;
+  document.getElementById('flashCardCount').textContent = `Card ${currentFlashIndex + 1} of ${filteredFlashcards.length}`;
+  document.getElementById('flashCardInner').classList.remove('flipped');
+}
+
+function initFlashcards() {
+  const inner = document.getElementById('flashCardInner');
+  inner.addEventListener('click', () => {
+    inner.classList.toggle('flipped');
+  });
+
+  document.getElementById('fcNext').addEventListener('click', () => {
+    currentFlashIndex = (currentFlashIndex + 1) % filteredFlashcards.length;
+    renderFlashcard();
+  });
+
+  document.getElementById('fcPrev').addEventListener('click', () => {
+    currentFlashIndex = (currentFlashIndex - 1 + filteredFlashcards.length) % filteredFlashcards.length;
+    renderFlashcard();
+  });
+
+  document.getElementById('fcShuffleBtn').addEventListener('click', () => {
+    for (let i = filteredFlashcards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [filteredFlashcards[i], filteredFlashcards[j]] = [filteredFlashcards[j], filteredFlashcards[i]];
+    }
+    currentFlashIndex = 0;
+    renderFlashcard();
+  });
+
+  document.getElementById('fcAudioBtn').addEventListener('click', () => {
+    const card = filteredFlashcards[currentFlashIndex];
+    speakText(card.question);
+  });
+
+  // Filter Chips
+  document.querySelectorAll('.flash-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.flash-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const cat = chip.getAttribute('data-cat');
+      if (cat === 'all') {
+        filteredFlashcards = [...flashcardsData];
+      } else {
+        filteredFlashcards = flashcardsData.filter(item => item.catKey === cat);
+      }
+      currentFlashIndex = 0;
+      renderFlashcard();
+    });
+  });
+
+  renderFlashcard();
+}
+
+// Scenario Simulator / Quiz Engine
+function renderQuiz() {
+  const q = quizScenarios[currentQuizIndex];
+  const container = document.getElementById('quizContainer');
+  document.getElementById('scenarioCounter').textContent = `Scenario ${currentQuizIndex + 1} of ${quizScenarios.length}`;
+
+  let optionsHtml = '';
+  q.options.forEach((opt) => {
+    optionsHtml += `
+      <div class="quiz-option" data-correct="${opt.correct}">
+        <span>${opt.text}</span>
+      </div>
+    `;
+  });
+
+  container.innerHTML = `
+    <h3 style="font-size:14px; font-weight:700; margin-bottom:8px;">${q.title}</h3>
+    <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px; line-height:1.5;">${q.scenario}</p>
+    <div class="quiz-options-wrap">${optionsHtml}</div>
+    <div class="quiz-explanation" id="quizExp">${q.explanation}</div>
+  `;
+
+  const optionEls = container.querySelectorAll('.quiz-option');
+  optionEls.forEach(el => {
+    el.addEventListener('click', () => {
+      optionEls.forEach(item => {
+        item.style.pointerEvents = 'none';
+        if (item.getAttribute('data-correct') === 'true') {
+          item.classList.add('correct');
+        } else if (item === el) {
+          item.classList.add('incorrect');
+        }
+      });
+      document.getElementById('quizExp').style.display = 'block';
+      updateProgress();
+    });
+  });
+}
+
+function initQuiz() {
+  document.getElementById('nextQuizBtn').addEventListener('click', () => {
+    currentQuizIndex = (currentQuizIndex + 1) % quizScenarios.length;
+    renderQuiz();
+  });
+  document.getElementById('prevQuizBtn').addEventListener('click', () => {
+    currentQuizIndex = (currentQuizIndex - 1 + quizScenarios.length) % quizScenarios.length;
+    renderQuiz();
+  });
+  renderQuiz();
+}
+
+// Interactive Mock Interview Engine
+function renderMockQuestion() {
+  const q = mockInterviewBank[currentMockIndex];
+  document.getElementById('mockCategory').textContent = q.category;
+  document.getElementById('mockQuestionText').textContent = q.question;
+  document.getElementById('mockProgressLabel').textContent = `Question ${currentMockIndex + 1} of ${mockInterviewBank.length}`;
+  
+  let pointsHtml = '';
+  q.points.forEach(pt => {
+    pointsHtml += `<li>${pt}</li>`;
+  });
+
+  document.getElementById('mockAnswerBox').innerHTML = `
+    <strong style="color:var(--accent);">Key Talking Points:</strong>
+    <ul style="padding-left:18px; margin-block:6px;">${pointsHtml}</ul>
+    <div style="margin-top:8px;"><strong>Complete Model Answer:</strong><br>${q.answer}</div>
+  `;
+  document.getElementById('mockAnswerBox').style.display = 'none';
+  document.getElementById('mockRevealBtn').textContent = '👁️ Show Model Answer & Talking Points';
+}
+
+function initMockInterview() {
+  renderMockQuestion();
+
+  document.getElementById('mockRandomBtn').addEventListener('click', () => {
+    currentMockIndex = (currentMockIndex + 1) % mockInterviewBank.length;
+    renderMockQuestion();
+  });
+
+  document.getElementById('mockSpeakBtn').addEventListener('click', () => {
+    const q = mockInterviewBank[currentMockIndex];
+    speakText(q.question);
+  });
+
+  document.getElementById('mockRevealBtn').addEventListener('click', () => {
+    const box = document.getElementById('mockAnswerBox');
+    if (box.style.display === 'none') {
+      box.style.display = 'block';
+      document.getElementById('mockRevealBtn').textContent = '🙈 Hide Model Answer';
+    } else {
+      box.style.display = 'none';
+      document.getElementById('mockRevealBtn').textContent = '👁️ Show Model Answer & Talking Points';
+    }
+  });
+
+  // Mock Timer
+  const timerDisplay = document.getElementById('mockTimerDisplay');
+  const startBtn = document.getElementById('mockTimerStart');
+  const resetBtn = document.getElementById('mockTimerReset');
+
+  function updateMockTimer() {
+    const mins = Math.floor(mockSecondsRemaining / 60);
+    const secs = mockSecondsRemaining % 60;
+    timerDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  }
+
+  startBtn.addEventListener('click', () => {
+    if (mockTimerInterval) {
+      clearInterval(mockTimerInterval);
+      mockTimerInterval = null;
+      startBtn.textContent = '▶ Resume';
+    } else {
+      startBtn.textContent = '⏸ Pause';
+      mockTimerInterval = setInterval(() => {
+        if (mockSecondsRemaining > 0) {
+          mockSecondsRemaining--;
+          updateMockTimer();
+        } else {
+          clearInterval(mockTimerInterval);
+          mockTimerInterval = null;
+          startBtn.textContent = '▶ Start';
+          alert("60 seconds elapsed! Wrap up your answer.");
+        }
+      }, 1000);
+    }
+  });
+
+  resetBtn.addEventListener('click', () => {
+    clearInterval(mockTimerInterval);
+    mockTimerInterval = null;
+    mockSecondsRemaining = 60;
+    startBtn.textContent = '▶ Start';
+    updateMockTimer();
+  });
+
+  // Self Ratings
+  document.getElementById('mockRateMaster').addEventListener('click', () => {
+    alert("Saved as Mastered! Great job.");
+    currentMockIndex = (currentMockIndex + 1) % mockInterviewBank.length;
+    renderMockQuestion();
+    updateProgress();
+  });
+
+  document.getElementById('mockRateNeed').addEventListener('click', () => {
+    alert("Flagged for review. Practice your answer out loud one more time.");
+  });
+}
+
+// Instant Port Finder
+function initPortFinder() {
+  const input = document.getElementById('portSearch');
+  const result = document.getElementById('portResult');
+
+  input.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase().trim();
+    if (!query) {
+      result.innerHTML = "Search above to find protocol, port number, transport layer, and primary troubleshooting tips.";
+      return;
+    }
+
+    const matches = portsDictionary.filter(item => 
+      item.port.includes(query) || 
+      item.name.toLowerCase().includes(query) || 
+      item.desc.toLowerCase().includes(query)
+    );
+
+    if (matches.length === 0) {
+      result.innerHTML = `<em>No ports matching "${query}". Try searching '53', 'RDP', '3389', or 'LDAP'.</em>`;
+    } else {
+      let html = '';
+      matches.forEach(m => {
+        html += `
+          <div style="background:var(--bg-surface-elevated); border:1px solid var(--border-subtle); border-radius:var(--radius-md); padding:8px 12px; margin-bottom:6px;">
+            <div style="display:flex; justify-content:space-between; font-weight:700; color:var(--text-main);">
+              <span>${m.name} (Port ${m.port})</span>
+              <span class="badge badge-primary">${m.proto}</span>
+            </div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:3px;">${m.desc}</div>
+          </div>
+        `;
+      });
+      result.innerHTML = html;
+    }
+  });
+}
+
+// Search Filter in Tech Tab & Academy Tab
+function initSearch() {
+  const techInput = document.getElementById('techSearch');
+  if (techInput) {
+    techInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      const cards = document.querySelectorAll('#tab-tech .tech-card');
+
+      cards.forEach(card => {
+        const keywords = (card.getAttribute('data-keywords') || '') + ' ' + card.innerText.toLowerCase();
+        card.style.display = keywords.includes(query) ? 'block' : 'none';
+      });
+    });
+  }
+
+  const academyInput = document.getElementById('academySearch');
+  if (academyInput) {
+    academyInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      const cards = document.querySelectorAll('#tab-academy .academy-card');
+
+      cards.forEach(card => {
+        const keywords = (card.getAttribute('data-keywords') || '') + ' ' + card.innerText.toLowerCase();
+        card.style.display = keywords.includes(query) ? 'block' : 'none';
+      });
+    });
+  }
+}
+
+// Progress and Checklist Tracking
+function updateProgress() {
+  try {
+    const totalItems = document.querySelectorAll('.checklist-item').length + quizScenarios.length;
+    let completed = 0;
+
+    document.querySelectorAll('.checklist-item').forEach(item => {
+      if (item.querySelector('input').checked) {
+        completed++;
+      }
+    });
+
+    const answeredCount = document.querySelectorAll('.quiz-option.correct').length;
+    completed += Math.min(quizScenarios.length, answeredCount);
+
+    const pct = Math.min(100, Math.round((completed / totalItems) * 100));
+    document.getElementById('progressPct').textContent = `${pct}% Mastered`;
+    document.getElementById('progressBar').style.width = `${pct}%`;
+
+    const state = {};
+    document.querySelectorAll('.checklist-item').forEach(item => {
+      state[item.getAttribute('data-id')] = item.querySelector('input').checked;
+    });
+    localStorage.setItem('it_prep_checklist_v3', JSON.stringify(state));
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+function initChecklist() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('it_prep_checklist_v3') || '{}');
+    document.querySelectorAll('.checklist-item').forEach(item => {
+      const id = item.getAttribute('data-id');
+      const input = item.querySelector('input');
+      if (saved[id]) {
+        input.checked = true;
+        item.classList.add('done');
+      }
+
+      item.addEventListener('click', (e) => {
+        if (e.target !== input) {
+          input.checked = !input.checked;
+        }
+        item.classList.toggle('done', input.checked);
+        updateProgress();
+      });
+    });
+  } catch (e) {
+    console.error(e);
+  }
+  updateProgress();
+}
+
+// Theme & Stop Audio Handling
+function initTheme() {
+  const toggle = document.getElementById('themeToggle');
+  toggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    try {
+      localStorage.setItem('it_prep_theme_v3', newTheme);
+    } catch(e) {}
+  });
+
+  try {
+    const savedTheme = localStorage.getItem('it_prep_theme_v3');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+  } catch(e) {}
+
+  document.getElementById('speakStopBtn').addEventListener('click', () => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      document.getElementById('speakStopBtn').style.display = 'none';
+    }
+  });
+
+  document.getElementById('resetProgress').addEventListener('click', () => {
+    if (confirm('Reset your study progress?')) {
+      try {
+        localStorage.removeItem('it_prep_checklist_v3');
+      } catch(e) {}
+      document.querySelectorAll('.checklist-item').forEach(item => {
+        item.querySelector('input').checked = false;
+        item.classList.remove('done');
+      });
+      updateProgress();
+    }
+  });
+}
+
+// App Boot
+document.addEventListener('DOMContentLoaded', () => {
+  initTabs();
+  initAccordions();
+  initPitchTimer();
+  initFlashcards();
+  initQuiz();
+  initMockInterview();
+  initPortFinder();
+  initSearch();
+  initChecklist();
+  initTheme();
+});
+</script>
+</body>
+</html>
